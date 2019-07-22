@@ -4,7 +4,7 @@
 
 <h3 align="center">GoAver.com API Integration</h3>
 
-GoAver.com uses permissioned API keys alongside Basic Authentication over HTTPS to allow easy access to the API
+GoAver.com uses permissioned API keys and Basic Authentication over HTTPS to allow easy access to API features
 
 ## General API Authentication
 <b>Details on Basic Authentication can be found here:</b><br>
