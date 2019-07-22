@@ -31,7 +31,11 @@ https://en.wikipedia.org/wiki/Basic_access_authentication (see Client Side)
 3. Include the Base64 encoded value in the Authorization header for Basic auth
   
 ### Call the Auth API Endpoint
-1. Call the specific API auth endpoint with your basic authentication header to return a JWT token so you can call other API endpoints and take further action, for general API interaction with the portal (reporting, etc), you would simply need an auth token, and the endpoint is https://app.goaver.com/Api/AuthToken.
+Call the specific API auth endpoint with your basic authentication header to return a JWT token so you can call other API endpoints and take further action.   
+
+For general API interaction with the portal (reporting, etc), you would simply need an auth token to be issued from a GET to https://app.goaver.com/Api/AuthToken.
+
+For an external check create, see the use case below for the variation in API access pattern.
 
 ## Use Case: Example Create Check
 
