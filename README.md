@@ -16,13 +16,13 @@ https://en.wikipedia.org/wiki/Basic_access_authentication (see Client Side)
 3. Copy the "secret"
 
 <p align="center">
-<img src="https://github.com/goaver/api-integration/blob/master/images/create_api_key.jpg?raw=true" width="640px">
+<img src="https://github.com/goaver/api-integration/blob/master/images/create_api_key.jpg?raw=true" width="300px">
 </p>
 
 4. View the key that was created and copy the "key"
 
 <p align="center">
-<img src="https://github.com/goaver/api-integration/blob/master/images/create_api_key2.jpg?raw=true" width="640px">
+<img src="https://github.com/goaver/api-integration/blob/master/images/create_api_key2.jpg?raw=true" width="300px">
 </p>
 
 ### Create your Basic Authentication Header for your Request
