@@ -37,7 +37,8 @@ https://en.wikipedia.org/wiki/Basic_access_authentication (see Client Side)
 
 The most common use case is to make a request to create a check for the user on the behalf of your organization if you choose not to invite them by e-mail or require deeper integration with your existing web site or app workflow.  This workflow uses a different authentcation endpoint to simplify the number of calls required.
 
-### 1. POST to https://app.goaver.com/Api/CheckCreateToken
+### 1. POST to Check Create Token Auth Endpoint
+<p>The auth endpoint for check create is located at https://app.goaver.com/Api/CheckCreateToken</p>
 
 #### Steps to POST
 - Create your basic authentication header as described above with your API credentials
