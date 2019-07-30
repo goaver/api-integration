@@ -6,9 +6,11 @@
 
 GoAver.com uses permissioned API keys and Basic Authentication over HTTPS to allow easy access to API features
 
-## General API Authentication
-<b>Details on Basic Authentication can be found here:</b><br>
-https://en.wikipedia.org/wiki/Basic_access_authentication (see Client Side)
+## Example Code
+<b>Example code / projects can be found here:</b><br>
+https://github.com/goaver/api-integration/tree/master/examples
+
+## Accessing the API
 
 ### First, create your API key in your organization's GoAver.com account:
 1. Navigate to Settings -> API Keys
@@ -22,10 +24,20 @@ https://en.wikipedia.org/wiki/Basic_access_authentication (see Client Side)
 4. View the key that was created and copy the "key"
 
 <p align="center">
-<img src="https://github.com/goaver/api-integration/blob/master/images/create_api_key2.jpg?raw=true" width="500px">
+<img src="https://github.com/goaver/api-integration/blob/master/images/create_api_key2.jpg?raw=true" width="600px">
 </p>
 
+5. Find the group id of the group you want to create checks under
+
+<p align="center">
+<img src="https://github.com/goaver/api-integration/blob/master/images/get-group-id.jpg?raw=true" width="600px">
+</p>
+
+
 ### Create your Basic Authentication Header for your Request
+<b>Details on Basic Authentication can be found here:</b><br>
+https://en.wikipedia.org/wiki/Basic_access_authentication (see Client Side)
+
 1. Concatenate < key >:< secret >
 2. Base64 encode the concatenated values
 3. Include the Base64 encoded value in the Authorization header for Basic auth
