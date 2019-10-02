@@ -57,7 +57,7 @@ The most common use case is to make a request to create a check for the user on 
 - POST to https://goaver.com/api/check/create
 
 #### Request parameters
-<b>uniqueId (required)</b> - A unique identifier for this create request to ensure idempotentcy and prevent multiple checks being created on your behalf with the same token
+<b>thirdPartyIdentifier (required)</b> - A unique identifier for this create request to ensure idempotentcy and prevent multiple checks being created on your behalf.  This could be a user account number or unique identifier within your existing application or randomly generated.
 
 <b>groupId (required)</b> - The check group context you want this check to be created under.  (For details on managing your check groups, please see the GoAver.com product documentation)
 
@@ -76,7 +76,7 @@ authorization: Bearer ZiA5MGQyMDMtYWM2NS00NzI5LTg5ZGItYTc5YWY4ZGQyZTUzOk9EYzVNRE
 <b>Example Request Body</b>
 <pre>
 {
-  "uniqueId":"12345",
+  "thirdPartyIdentifier":"12345",
   "groupId":"0aa4f4b8-c32f-4581-942d-559727582562",
   "returnUrl":"https://www.yoursite.com/checkcomplete",
   "language":"en",
@@ -86,6 +86,16 @@ authorization: Bearer ZiA5MGQyMDMtYWM2NS00NzI5LTg5ZGItYTc5YWY4ZGQyZTUzOk9EYzVNRE
 
 ### 2. Get the Check Create Response
 <p>If your POST is successful you will get the check create response containing the created check parameters:
+ 
+<pre>
+{
+  "checkId":"0aa4f4b8-c32f-4581-942d-5597272523562",
+  "thirdPartyIdentifier":"12345",
+  "url":"https://app.goaver.com/checkenrollment/0aa4f4b8-c32f-4581-942d-5597272523562?accessCode=5ZGItYTc5YWY4ZGQyZTUzOk9EYzVNREcxWWpAMk5qQmtPR0UyT2&language=en&returnUrl=https://www.yoursite.com/checkcomplete
+}
+</pre>
+  
+#### Response parameters
 <b>checkId</b> - The unique identifier of the check 
   
 <b>thirdPartyIdentifier</b> - The third party identifier for the created check (provided above)
