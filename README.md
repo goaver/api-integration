@@ -18,19 +18,19 @@ https://github.com/goaver/api-integration/tree/master/examples
 3. Copy the "secret"
 
 <p align="center">
-<img src="https://github.com/goaver/api-integration/blob/master/images/create_api_key.jpg?raw=true" width="450px">
+<img src="./images/create_api_key_1.jpg?raw=true?raw=true" width="450px">
 </p>
 
 4. View the key that was created and copy the "key"
 
 <p align="center">
-<img src="https://github.com/goaver/api-integration/blob/master/images/create_api_key2.jpg?raw=true" width="600px">
+<img src="./images/create_api_key_2.jpg?raw=true" width="600px">
 </p>
 
 5. Find the group id of the group you want to create checks under
 
 <p align="center">
-<img src="https://github.com/goaver/api-integration/blob/master/images/get-group-id.jpg?raw=true" width="600px">
+<img src="./images/get-group-id.jpg?raw=true" width="600px">
 </p>
 
 
