@@ -36,7 +36,7 @@ namespace Aver.ApiIntegration.Util
         /// <param name="url"></param>
         /// <param name="jsonContent"></param>
         /// <returns></returns>
-        public static string CallService(ServiceAction action, string apiKey, string apiSecret, string url, object content)
+        public static string CallService(ServiceAction action, string url, object content, string apiKey = null, string apiSecret = null, string bearerToken = null)
         {
             //Ignore certificate errors
             ServicePointManager.ServerCertificateValidationCallback = (sender, certificate, chain, policyErrors) => true;
@@ -46,9 +46,17 @@ namespace Aver.ApiIntegration.Util
                 //Set the content type header
                 client.Headers[HttpRequestHeader.ContentType] = "application/json";
 
-                //Set the basic auth header
-                var authBytes = Encoding.ASCII.GetBytes(String.Format("{0}:{1}", apiKey, apiSecret));
-                client.Headers[HttpRequestHeader.Authorization] = String.Format("Basic {0}", Convert.ToBase64String(authBytes));
+                if(apiKey != null && apiSecret != null)
+                {
+                    //Set the basic auth header
+                    var authBytes = Encoding.ASCII.GetBytes(String.Format("{0}:{1}", apiKey, apiSecret));
+                    client.Headers[HttpRequestHeader.Authorization] = String.Format("Basic {0}", Convert.ToBase64String(authBytes));
+                }
+                else if(bearerToken != null)
+                {
+                    //Set the bearert token header
+                    client.Headers[HttpRequestHeader.Authorization] = String.Format("Bearer {0}", bearerToken);
+                }
 
                 if (action == ServiceAction.GET)
                 {

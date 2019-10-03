@@ -28,25 +28,33 @@ namespace Aver.ApiIntegration.Controllers
         {
             //Get the API config
             var apiConfig = _configuration.GetSection("AverApi");
-            var url = String.Format("{0}/CheckCreateToken", apiConfig["Url"]);
+            var authUrl = String.Format("{0}/auth/token", apiConfig["Url"]);
+            var checkCreateUrl = String.Format("{0}/check/create", apiConfig["Url"]);
             var key = apiConfig["Key"];
             var secret = apiConfig["Secret"];
             var groupId = apiConfig["GroupId"]; 
 
+            //Get the token from basic auth
+            var authRes = ServicesUtil.CallService(ServiceAction.GET, authUrl, null, key, secret);
+            var token = JsonConvert.DeserializeObject<AverAuthResponse>(authRes);
+
+
             //Build the check create request
-            var checkRequest = new AverCheckCreateRequest
+            var checkCreateRequest = new AverCheckCreateRequest
             {
-                UniqueId = Guid.NewGuid().ToString(),
+                ThirdPartyIdentifier = Guid.NewGuid().ToString(),
                 GroupId = groupId,  //You can use different groups within your organization if desired, we just have a default in config we're using
-                //Email = "someuser@user.com",  //Optional, this will default / force the e-mail to be verified by the user
+                EmailAddress = "someuser@user.com"
                 //ReturnUrl = "https://www.yoursite.com/enrollmentcomplete" //Optional, this will redirect after in-proc enrollment is complete
+                //Language = "en" //Optional, this will default the language, default is always English and the user has the option to toggle language during the process
             };
 
-            //Get the token from basic auth
-            string res = ServicesUtil.CallService(ServiceAction.POST, key, secret, url, checkRequest);
-            var response = JsonConvert.DeserializeObject<AverCheckCreateResponse>(res);
+            //Create our check
+            var checkRes = ServicesUtil.CallService(ServiceAction.POST, checkCreateUrl, checkCreateRequest, null, null, token.Token);
+            var check = JsonConvert.DeserializeObject<AverCheckCreateResponse>(checkRes);
 
-            ViewData["Token"] = response.Token;
+            //Return the url for the user to continue
+            ViewData["Url"] = check.Url;
 
             return View();
         }
