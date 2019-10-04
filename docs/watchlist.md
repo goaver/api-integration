@@ -80,7 +80,7 @@
 </pre>
 
 ## GET api/watchlist/getbycheckid/{checkId}
-<p>Retrieves the watchlist search that was created as the result of a check enrollment that had a check type of watchlist search associated with it - refer to: https://github.com/goaver/api-integration/blob/development/docs/check.md#get-apicheckidresults
+<p>Retrieves the watchlist search that was created as the result of a check enrollment that had a check type of watchlist search associated with it - refer to: https://github.com/goaver/api-integration/blob/master/docs/check.md#get-apicheckidresults
 </p>
 
 ### Request Parameters
