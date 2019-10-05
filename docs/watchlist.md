@@ -1,4 +1,4 @@
-# Watchlist
+# Watchlist (/api/watchlist)
 <p>This resource will allow the creation and retrieval of watchlist searches</p>
 
 ## POST api/watchlist/search
