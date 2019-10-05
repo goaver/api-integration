@@ -15,7 +15,7 @@ The most common use case is to make a request to create a check for the user on 
 4. Provide the user with a link or redirect to begin their check enrollment
 
 ## Authenticating to Access API Resource Endpoints
-- [Authenticating with Your API Key](https://github.com/goaver/api-integration/blob/master/docs/accessing.md)
+- [Authenticating and Accessing the API](https://github.com/goaver/api-integration/blob/master/docs/accessing.md)
 
 ## API Resource Endpoints
 ### Auth (/api/auth)
