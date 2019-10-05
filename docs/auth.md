@@ -1,3 +1,6 @@
+# Auth (/api/auth)
+<p>This resource handles API authentication</p>
+
 ## GET /api/auth/token
 Creates / retrieves a bearer token to be used for authentication with all other API endpoints.
 
