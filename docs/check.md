@@ -1,4 +1,4 @@
-# Check
+# Check (/api/check)
 <p>This resource will allow the creation and retrieval of check enrollments and access links</p>
 
 ## POST /api/check/create
