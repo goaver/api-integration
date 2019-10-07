@@ -1,4 +1,4 @@
-# Accessing the API
+# Accessing the Aver REST API
 
 ## 1. Create your API key in your organization's GoAver.com account:
 1. Navigate to Settings -> API Keys
