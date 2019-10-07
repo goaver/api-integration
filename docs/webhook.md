@@ -31,7 +31,7 @@ optional_security_header_key : optional_security_header_value
 </pre>
 
 ### Message Parameters
-- <b>type</b> - The type of the entity
+- <b>type</b> - The type of the entity (LiveCheck, OfflineCheck, WatchlistSearch, RecurringWatchlistSearch)
 
 - <b>id</b> - The id of the entity with the status change
 
