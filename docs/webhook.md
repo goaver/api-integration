@@ -15,6 +15,16 @@
 Protip:  To test the requests coming from Aver to know what to expect to your endpoint and to test your configuration, https://webhook.site provides temporary endpoint for testing to give full visibility
 </p>
 
+### Response Parameters
+- <b>type</b> - The type of the entity
+
+- <b>id</b> - The id of the entity with the status change
+
+- <b>status/b> - The updated status (Complete, Rejected, Failed)
+
+
+
+
 ### Example Header
 <pre>
 content-type: application/json
