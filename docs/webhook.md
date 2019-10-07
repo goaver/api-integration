@@ -30,7 +30,7 @@ optional_security_header_key : optional_security_header_value
 }
 </pre>
 
-### Response Parameters
+### Message Parameters
 - <b>type</b> - The type of the entity
 
 - <b>id</b> - The id of the entity with the status change
