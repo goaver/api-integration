@@ -4,7 +4,7 @@
 
 <h3 align="center">GoAver.com API Integration</h3>
 
-GoAver.com uses permissioned API keys and Basic Authentication over HTTPS to allow easy access to REST API features
+GoAver.com uses permissioned API keys and Basic Authentication over HTTPS to allow easy access to API features
 
 ## Quick Start: Create Check
 The most common use case is to make a request to create a check for the user on the behalf of your organization if you choose not to invite them via the portal or require deeper integration for higher volume workflows.
