@@ -12,7 +12,7 @@
 
 ## 2. Test your configuration
 <p>
-Protip:  To test the requests coming from Aver to know what to expect to your endpoint and to test your configuration, https://webhook.site provides temporary endpoint for testing to give full visibility
+<b>Protip:</b>  To test the requests coming from Aver to know what to expect to your endpoint and to test your configuration, https://webhook.site provides temporary endpoint for testing to give full visibility
 </p>
 
 ### Example Header
