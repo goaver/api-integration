@@ -18,7 +18,7 @@ Protip:  To test the requests coming from Aver to know what to expect to your en
 ### Example Header
 <pre>
 content-type: application/json
-optional_security_header_key : optional_security_header_value
+optional_security_header_key: optional_security_header_value
 </pre>
 
 ### Example Message content
