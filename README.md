@@ -44,9 +44,11 @@ The most common use case is to make a request to create a check for the user on 
 
 - [Retrieve the List of Watchlists Searched](https://github.com/goaver/api-integration/blob/master/docs/watchlist.md#get-apiwatchlistidsearchedlists)
 
+## Notifications
+- [Receiving Active Notifications via Webhooks](https://github.com/goaver/api-integration/blob/master/docs/webhooks.md)
+
 ## Example Code
-<b>Example code / projects can be found here:</b><br>
-https://github.com/goaver/api-integration/tree/master/examples
+- [Example Code / Projects](https://github.com/goaver/api-integration/tree/master/examples)
 
 
 
