@@ -65,7 +65,7 @@
 </pre>
 
 # Completing the Check via API Without End User Enrollment
-<p>If the check doesn't have a Check Type of Document Verification (in which case there is no URL), or you want to perform the check without live interaction with the end user, you can complete the check by providing all the data via the API on behalf of the user to obtain results.</p>
+<p>If the check doesn't have a Check Type of Document Verification (in which case there is no URL), or you want to perform the check without live interaction with the end user, you can complete the check by providing all the data via the API on behalf of the user and then submitting the application to obtain your risk and report results.</p>
 
 ## POST /api/check/{id}/personalinfo
 <p>Provide all the user information required by the check type(s)</p>
@@ -90,5 +90,14 @@
 }
 </pre>
 
+## POST /api/check/{id}/iddocument
+<p>Use this endpoint to upload the ID document to be used in the check.  This is only required for Document Verification and Photo Verification check types that were specified at check create or at the group level</p>
+
+## POST /api/check/{id}/photodocument
+<p>Use this endpoint to upload the photo / selfie document to be used in the check.  This is only required for Photo Verification and Visual Watchlist check types that were specified at check create or at the group level.</p>
+
+## POST /api/check/{id}/supplementaldocument
+<p>Use this endpoint to upload one or more supplemental documents to be used / included in the check.  This is only required for Accredited Investor check type or if any Supplemental Document Types were provided at the time the check was created or at the group level.</p>
+
 ## GET /api/check/{id}/submit
-<p>After all the required data and images are uploaded, this endpoint is called to finalize and process the check.  If the check is able to be completed immediately, it will return the full results of the check, otherwise the status will be returned and the results can be retrieved after the check is completed asynchronously.</p>
+<p>After all the required data and images are uploaded for the required check types and supplemental document types, this endpoint is called to finalize and process the check.  If the check is able to be completed immediately, it will return the full results of the check, otherwise the status will be returned and the results can be retrieved after the check is completed asynchronously.</p>
