@@ -16,7 +16,8 @@
 - <b>fileNName (required if fileContent is provided) - The filename for the file content provided for the Visual Watchlist search
 
 *NOTE: Either firstName + lastName or businessName must be provided at a minimum.
-*Informationn about Data URL can be found here: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs
+
+*Information about Data URL can be found here: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs
 
 #### Example Request
 <pre>
