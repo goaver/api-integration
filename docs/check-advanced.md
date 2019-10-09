@@ -53,7 +53,7 @@
   
 - <b>thirdPartyIdentifier</b> - The third party identifier for the created check (provided above)
 
-- <b>url</b> - The link url to be passed to the user to allow them to access this created enrollment and continue the process. Note: if Document Verification is not defined as a Check Type, the url will be null since end user enrollment requires document verification at a minimum.
+- <b>url</b> - The link url that can be passed to the end user to allow them to proceed and provide their information via live enrollment. Note: if Document Verification is not defined as a Check Type, the url will be null since end user enrollment requires document verification at a minimum.
 
 #### Example Response
 <pre>
