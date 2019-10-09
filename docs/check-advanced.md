@@ -17,6 +17,10 @@
 
 - <b>returnUrl (optional)</b> - The url to redirect to for the user once they have completed the check enrollment workflow.  This is generally used for inline workflows.  The status / complete page will be shown at the end of enrollment if this is not set.
 
+- <b>checkTypes (optional)</b> - The check types to be used for this check.  When set, this will override the Check Type defaults and Supplemental Document Types defined in Check Group Settings configuration
+
+- <b>supplementalDocumentTypes (optional)</b> - The supplemental document types required to be submitted with this check
+
 #### Example Request
 <pre>
 {
@@ -24,7 +28,23 @@
   "thirdPartyIdentifier":"123456",
   "email":"someone@somewhere.com",
   "language":"en",
-  "returnUrl":"https://www.yoursite.com/page"
+  "returnUrl":"https://www.yoursite.com/page",
+  "checkTypes":[
+    "DocumentVerification",
+    "EmailVerification",
+    "PhotoVerification",
+    "AccreditedInvestor",
+    "RiskProfiling",
+    "AddressVerification",
+    "Watchlist",
+    "VisualWatchlist"
+  ],
+  "supplementalDocumentTypes":[
+    "AccreditedInvestor",
+    "CreditCard",
+    "BankCard",
+    "UtilityBill"
+  ]
 }
 </pre>
 
@@ -33,7 +53,7 @@
   
 - <b>thirdPartyIdentifier</b> - The third party identifier for the created check (provided above)
 
-- <b>url</b> - The link url to be passed to the user to allow them to access this created enrollment and continue the process
+- <b>url</b> - The link url to be passed to the user to allow them to access this created enrollment and continue the process. Note: if Document Verification is not defined as a Check Type, the url will be null since end user enrollment requires document verification at a minimum.
 
 #### Example Response
 <pre>
