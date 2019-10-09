@@ -67,3 +67,28 @@
 # Completing the Check via API Without End User Enrollment
 <p>If the check doesn't have a Check Type of Document Verification (in which case there is no URL), or you want to perform the check without live interaction with the end user, you can complete the check by providing all the data via the API on behalf of the user to obtain results.</p>
 
+## POST /api/check/{id}/personalinfo
+<p>Provide all the user information required by the check type(s)</p>
+
+#### Example Request
+<pre>
+{
+  "email":"someone@somewhere.com",
+  "ipAddress":"192.168.1.1",
+  "companyName":"Some Company",
+  "firstName":"Someone",
+  "middleName":null,
+  "lastName":"One",
+  "suffix":null,
+  "gender":"M",
+  "dateOfBirth":"12/03/1980",
+  "stateOrProvince":"California",
+  "country":"US",
+  "streetAddress1":"1234 Main St",
+  "city":"San Diego",
+  "postalCode":"22434"
+}
+</pre>
+
+## GET /api/check/{id}/submit
+<p>After all the required data and images are uploaded, this endpoint is called to finalize and process the check.  If the check is able to be completed immediately, it will return the full results of the check, otherwise the status will be returned and the results can be retrieved after the check is completed asynchronously.</p>
