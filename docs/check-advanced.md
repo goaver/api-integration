@@ -64,3 +64,6 @@
 }
 </pre>
 
+# Using Offline API Checking without End User Live Enrollment
+<p>If you aren't passing the URL too the end user or you aren't doing Document Verification (in which case there is no URL), you can do complete the check by providing all the data via the API on behalf of the user to obtain results.</p>
+
