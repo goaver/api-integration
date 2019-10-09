@@ -102,9 +102,6 @@
 ### Request Parameters
 - [Path] <b>id (required)</b> - The unique identifier returned from the check create call
 
-### Request Parameters
-- [Path] <b>id (required)</b> - The unique identifier returned from the check create call
-
 ## POST /api/check/{id}/photodocument
 <p>Use this endpoint to upload the photo / selfie document to be used in the check.  This is only required for Photo Verification and Visual Watchlist check types that were specified at check create or at the group level.</p>
 
