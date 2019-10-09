@@ -2,7 +2,7 @@
 <img src="https://github.com/goaver/api-integration/blob/master/images/aver_logo.png?raw=true" width="125px">
 </p>
 
-<h3 align="center">GoAver.com API Integration</h3>
+<h1 align="center">GoAver.com API Integration</h1>
 
 GoAver.com uses permissioned API keys and Basic Authentication over HTTPS to allow easy access to API features
 
