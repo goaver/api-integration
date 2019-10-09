@@ -64,6 +64,6 @@
 }
 </pre>
 
-# Using Offline API Checking without End User Live Enrollment
-<p>If the check doesn't have a Check Type of Document Verification (in which case there is no URL), or you want to perform the check without live interaction with the end user, you can do complete the check by providing all the data via the API on behalf of the user to obtain results.</p>
+# Completing the Check via API Without End User Enrollment
+<p>If the check doesn't have a Check Type of Document Verification (in which case there is no URL), or you want to perform the check without live interaction with the end user, you can complete the check by providing all the data via the API on behalf of the user to obtain results.</p>
 
