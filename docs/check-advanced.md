@@ -3,8 +3,11 @@
   
 - [Basic Check Functionality](https://github.com/goaver/api-integration/blob/master/docs/check.md)
 
+# Creating a Check With Group Default Check Type and Supplemental Document Type Overrides
+<p>Basic Check Create functionality will use the Check Group defaults configured to determine the Check Types and Supplemental Document Types required.  If more control is needed in certain cases, the create call can override these defaults.</p>
+
 ## POST /api/check/create
-<p>Creates a new check enrollment</p>
+<p>Creates a new check enrollment overriding the Check Types and Supplemental Document Types required</p>
 
 ### Request Parameters
 - <b>thirdPartyIdentifier (required)</b> - A unique identifier for this create request to ensure idempotentcy and prevent multiple checks being created on your behalf.  This could be a user account number or unique identifier within your existing application or randomly generated.
