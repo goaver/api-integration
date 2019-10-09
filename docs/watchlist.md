@@ -12,6 +12,8 @@
 - <b>businessName (optional *)</b> - The business / organization name to search
 - <b>country (optional)</b> - The country for the individual or business
 - <b>stateOrProvince (optional)</b> - The state for the individual or business
+- <b>fileContent (optional)</b> - Base64 data URL for the image to use.  When provided, this will perform Visual Watchlist search in addition to the Text Watchlist search (associated fees apply)
+- <b>fileNName (required if fileContent is provided) - The filename for the file content provided for the Visual Watchlist search
 
 *NOTE: Either firstName + lastName or businessName must be provided at a minimum.
 
