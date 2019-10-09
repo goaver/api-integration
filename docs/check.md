@@ -57,6 +57,8 @@
 
 - <b>status</b> - The status of the check
 
+- <b>statusReason</b> - If the check was rejected, detail as to the reason (unreadable documents, underage, etc)
+
 - <b>checkTypes</b> - The list of check types / verifications performed as part of the check 
 
 #### Example Response
@@ -94,6 +96,8 @@
 - <b>groupId</b> - The group the check is in
 
 - <b>status</b> - The status of the check
+
+- <b>statusReason</b> - If the check was rejected, detail as to the reason (unreadable documents, underage, etc)
 
 - <b>checkTypes</b> - The list of check types / verifications performed as part of the check 
 
