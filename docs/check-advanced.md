@@ -1,4 +1,4 @@
-# Advanced Check Functionality (/api/check
+# Advanced Check Functionality (/api/check)
 <p>Using advanced functionality of the check resource will allow deeper and more custom integration as well as offline checking using the Aver API.  This documentation extends the documentation for [Basic Check Endpoint Functionality](https://https://github.com/goaver/api-integration/blob/master/docs/check.md)</p>
 
 ## POST /api/check/create
