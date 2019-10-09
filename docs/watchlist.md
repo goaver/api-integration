@@ -137,7 +137,7 @@
 - <b>checkId</b> - The associated check that created the watchlist search (if applicable)
 - <b>status</b> - The status of the search
 - <b>searchDate</b> - The UTC date / time of the search
-- <b>searchType</b> - The type of search (text, visual, text and visual)
+- <b>searchType</b> - The type of search (text, text and visual)
 - <b>recheckInterval</b> - The auto-recurring search interval for this search to be performed (days)
 - <b>lastRecheckDate</b> - The UTC date / time of the last recurring search that was done based on this search
 - <b>searchCriteria</b> - The search criteria provided for the search
