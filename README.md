@@ -41,7 +41,7 @@ GoAver.com uses permissioned API keys and Basic Authentication over HTTPS to all
 ## Notifications
 - [Receiving Active Notifications via Webhooks](https://github.com/goaver/api-integration/blob/master/docs/webhook.md)
 
-## Quick Start / Use Cases
+## Quick Start
 - [Create a Basic Live Check](https://github.com/goaver/api-integration/blob/master/docs/quickstart.md#create-basic-live-check)
 
 ## Example Code
