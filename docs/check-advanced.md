@@ -119,6 +119,11 @@
 
 ### Request Parameters
 - [Path] <b>id (required)</b> - The unique identifier returned from the check create call
+- <b>forceCommit (optional)</b> - if "true" this will ignore any errors in document processing (facial recognition, OCR, etc) and may result in a delayed result requiring additional processing or a failed check result if the image is unreadable.
+- <b>docType (required)</b> - the type of identification document being provided 
+- <b>side (required)</b> - the side of the document being provided "Front","Back" 
+- <b>fileName (required)</b> - the filename of the image being uploaded
+- <b>fileContent (required)</b> - Base64 image (JPG or PNG) Data URL of image containing the specified side of the document.  Information about Data URL can be found [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs)
 
 #### Example Request
 <pre>
@@ -136,6 +141,9 @@
 
 ### Request Parameters
 - [Path] <b>id (required)</b> - The unique identifier returned from the check create call
+- <b>forceCommit (optional)</b> - if "true" this will ignore any errors in document processing (facial recognition) and may result in a delayed result requiring additional processing or a failed check result if the image is unreadable.
+- <b>fileName (required)</b> - the filename of the image being uploaded
+- <b>fileContent (required)</b> - Base64 image (JPG or PNG) Data URL of the image containing the individual's face.  Information about Data URL can be found [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs)
 
 #### Example Request
 <pre>
@@ -160,6 +168,9 @@
 
 ### Request Parameters
 - [Path] <b>id (required)</b> - The unique identifier returned from the check create call
+- <b>docType (required)</b> - the type of supplemental document being provided 
+- <b>fileName (required)</b> - the filename of the image being uploaded
+- <b>fileContent (required)</b> - Base64 image (JPG or PNG) Data URL of the image containing page of the document to be uploaded.  Information about Data URL can be found [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs)
 
 ## GET /api/check/{id}/submit
 <p>After all the required data and images are uploaded for the required check types and supplemental document types, this endpoint is called to finalize and process the check.  If the check is able to be completed immediately, it will return the full results of the check, otherwise the status will be returned and the results can be retrieved after the check is completed asynchronously.</p>
