@@ -33,6 +33,8 @@ The most common use case is to make a request to create a check for the user on 
 
 - [Generate a One-Time Check Access Link](https://github.com/goaver/api-integration/blob/master/docs/check.md#post-apicheckidaccesslink)
 
+- [Advanced Check Processing Functionality (beta)](https://github.com/goaver/api-integration/blob/master/docs/check-advanced.md)
+
 ### Watchlist (/api/watchlist)
 - [Create and Execute a Watchlist Search](https://github.com/goaver/api-integration/blob/master/docs/watchlist.md#post-apiwatchlistsearch)
 
