@@ -79,6 +79,21 @@
 ### Request Parameters
 - [Path] <b>id (required)</b> - The unique identifier returned from the check create call
 
+- <b>ipAddress (optional - depends on check types)</b> - individual's IP address
+- <b>companyName (optional - depends on check types)</b> - individual's company name
+- <b>firstName (required)</b> - individual's first name (given name)
+- <b>middleName (optional)</b> - individual's middle name
+- <b>lastName (required)</b> - individual's last name (surname)
+- <b>suffix (optional)</b> - individual's name suffix
+- <b>gender (optional)</b> - individual's gender - "M" (male), "F" (female), "U" (unknown / not provided)
+- <b>dateOfBirth (optional - depends on check types)</b> - individual's date of birth in MM/DD/YYYY format
+- <b>stateOrProvince (optional - depends on check types)</b> - individual's state or province of residence
+- <b>country (optional - depends on check types)</b> - individuals country of residence (use ISO 3166 2-digit alpha country code, see https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes)
+- <b>streetAddress1 (optional - depends on check types)</b> - individual's residence street address
+- <b>streetAddress2 (optional)</b> - individual's residence street address
+- <b>city (optional - depends on check types)</b> - individual's city of residence
+- <b>postalCode (optional - depends on check types)</b> - individual's residential postal code
+
 #### Example Request
 <pre>
 {
