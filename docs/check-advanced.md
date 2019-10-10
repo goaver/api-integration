@@ -110,10 +110,9 @@
 {
   "forceCommit":false,
   "docType":"USALicenseIdCard",
-  "front":{
-    "fileName":"front.jpg",
-    "fileContent":"data:image/jpeg;base64,/9j/4AAQSkZAmY7PhCfv..."
-  }
+  "side":"Front",
+  "fileName":"front.jpg",
+  "fileContent":"data:image/jpeg;base64,/9j/4AAQSkZAmY7PhCfv..."
 }
 </pre>
 
