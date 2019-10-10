@@ -24,6 +24,8 @@
 
 - <b>supplementalDocumentTypes (optional)</b> - The supplemental document types required to be submitted with this check
 
+- <b>watchlistRecheckInterval (optional)</b> - This only applies if you are overriding the default check types, otherwise group settings will be used to set the recurring watchlist search interval.  Valid values are 7 (weekly) and 30 (monthly)
+
 #### Example Request
 <pre>
 {
