@@ -45,7 +45,7 @@ GoAver.com uses permissioned API keys and Basic Authentication over HTTPS to all
 - [Create a Basic Live Check](https://github.com/goaver/api-integration/blob/master/docs/quickstart.md#create-basic-live-check)
 
 ## Sample Code and Projects
-- [Example Code / Projects](https://github.com/goaver/api-integration/tree/master/examples)
+- [.NET Site / API Wrapper Example](https://github.com/goaver/api-integration/tree/master/examples/dotnet)
 
 
 
