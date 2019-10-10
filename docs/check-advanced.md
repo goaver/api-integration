@@ -113,7 +113,7 @@
 {
   "forceCommit":false,
   "fileName":"selfie.jpg",
- "fileContent":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4QBMRXhpZgAATU0AKgAAAAgAAgESAAMAAAABAAEAAIdpAAQAAAABAAAAJgAAAAAAAqACAAQAAAABAAAC0aADAAQAAAABAAABtgAAAAD/7QA4UGhvdG9zaG9w..."
+  "fileContent":"data:image/jpeg;base64,/9j/4AAQSkZJRg..."
 }
 </pre>
 
