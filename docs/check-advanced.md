@@ -112,10 +112,6 @@
   "front":{
     "fileName":"front.jpg",
     "fileContent":"data:image/jpeg;base64,/9j/4AAQSkZAmY7PhCfv..."
-  },
-  "back":{
-    "fileName":"back.jpg",
-    "fileContent":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAA..."
   }
 }
 </pre>
@@ -142,12 +138,8 @@
 <pre>
 {
   "docType":"AccreditedInvestor",
-  "pages":[
-    {
-      "fileName":"accredited.jpg",
-      "fileContent":"data:image/jpeg;base64,/9j/4AAQSkZJR..."
-    }
-  ]
+  "fileName":"accredited.jpg",
+  "fileContent":"data:image/jpeg;base64,/9j/4AAQSkZJR..."
 }
 </pre>
 
