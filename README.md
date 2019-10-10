@@ -36,11 +36,11 @@ GoAver.com uses permissioned API keys and Basic Authentication over HTTPS to all
 
 - [Retrieve the List of Watchlists Searched](https://github.com/goaver/api-integration/blob/master/docs/watchlist.md#get-apiwatchlistidsearchedlists)
 
-## Notifications
-- [Receiving Active Notifications via Webhooks](https://github.com/goaver/api-integration/blob/master/docs/webhook.md)
-
 ## Quick Start Examples
 - [Create a Basic Live Check](https://github.com/goaver/api-integration/blob/master/docs/quickstart.md#create-basic-live-check)
+
+## Notifications
+- [Receiving Active Notifications via Webhooks](https://github.com/goaver/api-integration/blob/master/docs/webhook.md)
 
 ## Advanced Use Cases and Endpoints
 - [Advanced Check Processing Functionality (beta)](https://github.com/goaver/api-integration/blob/master/docs/check-advanced.md)
