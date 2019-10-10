@@ -1,6 +1,7 @@
 # Watchlist (/api/watchlist)
 <p>This resource will allow the creation and retrieval of watchlist searches</p>
 
+---
 ## POST api/watchlist/search
 <p></p>
 
@@ -40,6 +41,7 @@
 }
 </pre>
 
+---
 ## GET api/watchlist/{id}
 <p>Retrieves the search and status information for the specified watchlist search</p>
 
@@ -81,6 +83,7 @@
 }
 </pre>
 
+---
 ## GET api/watchlist/getbycheckid/{checkId}
 <p>Retrieves the watchlist search that was created as the result of a check enrollment that had a check type of watchlist search associated with it - refer to: https://github.com/goaver/api-integration/blob/master/docs/check.md#get-apicheckidresults
 </p>
@@ -124,6 +127,7 @@
 }
 </pre>
 
+---
 ## GET api/watchlist/{id}/results
 <p>Retrieves the results for a specified watchlist</p>
 
@@ -183,6 +187,7 @@
 }
 </pre>
 
+---
 ## GET api/watchlist/{id}/searchedlists
 <p>Retrieves the list of watchlists names and versions that were searched for the results</p>
 
