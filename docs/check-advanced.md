@@ -136,6 +136,19 @@
 ## POST /api/check/{id}/supplementaldocument
 <p>Use this endpoint to upload one or more supplemental documents to be used / included in the check.  This is only required for Accredited Investor check type or if any Supplemental Document Types were provided at the time the check was created or at the group level.</p>
 
+#### Example Request
+<pre>
+{
+  "docType":"AccreditedInvestor",
+  "pages":[
+    {
+      "fileName":"accredited.jpg",
+      "fileContent":"data:image/jpeg;base64,/9j/4AAQSkZJR..."
+    }
+  ]
+}
+</pre>
+
 ### Request Parameters
 - [Path] <b>id (required)</b> - The unique identifier returned from the check create call
 
