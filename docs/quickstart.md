@@ -1,8 +1,7 @@
 # Quick Start
 <p>This page will contain the most common use cases for using the Aver API to integrate verification services into your website or application</p>
 
-
-## Quick Start: Create Check
+## Create Basic Live Check
 The most common use case is to make a request to create a check for the user on the behalf of your organization if you choose not to invite them via the portal or require deeper integration for higher volume workflows.
 
 #### Steps
