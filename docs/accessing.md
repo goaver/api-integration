@@ -30,7 +30,7 @@ https://en.wikipedia.org/wiki/Basic_access_authentication (see Client Side)
 3. Include the Base64 encoded value in the Authorization header for Basic auth
   
 ### 3. Call the API Auth Token Endpoint and get your token
-Call the API auth endpoint with your basic authentication header to return a token so you can call other API endpoints and take further action.   Refer to [Get an API Auth Token](https://github.com/goaver/api-integration/blob/master/docs/auth.md#request)
+Call the API auth endpoint with your basic authentication header to return a token so you can call other API endpoints and take further action.   Refer to [Get an API Auth Token](https://github.com/goaver/api-integration/blob/master/docs/auth.md#request).  The base API URL is https://app.goaver.com/api
 
 ### 4. Use your API Auth Token for all API Resource Calls
 <p>For any resource request, the endpoint will require the Authorization header to be set as a bearer token with the token you generated in the previous step.<p>
