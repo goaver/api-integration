@@ -5,7 +5,7 @@
 <p>Creates a new check enrollment</p>
 
 ### Request Parameters
-- <b>thirdPartyIdentifier (required)</b> - A unique identifier for this create request to ensure idempotentcy and prevent multiple checks being created on your behalf.  This could be a user account number or unique identifier within your existing application or randomly generated.
+- <b>thirdPartyIdentifier (required)</b> - A unique identifier for this create request to ensure uniqueness and prevent multiple checks being created on your behalf.  This could be a user account number or unique identifier within your existing application or randomly generated.
 
 - <b>groupId (required)</b> - The check group context you want this check to be created under.  (For details on managing your check groups, please see the GoAver.com product documentation)
 
