@@ -1,6 +1,7 @@
 # Check (/api/check)
 <p>This resource will allow the creation and retrieval of check enrollments and access links</p>
 
+---
 ## POST /api/check/create
 <p>Creates a new check enrollment</p>
 
@@ -42,6 +43,7 @@
 }
 </pre>
 
+---
 ## GET /api/check/{id}
 <p>Gets the check information and status for a check using the Aver checkId returned when creating the check</p>
 
@@ -82,6 +84,7 @@
 }
 </pre>
 
+---
 ## GET /api/check/getbythirdpartyidentifier/{id}
 <p>Gets the check information and status for a check from the third party identifier provided when creating the check</p>
 
@@ -122,6 +125,7 @@
 }
 </pre>
 
+---
 ## GET /api/check/{id}/results
 <p>Gets the check information and status for a check including all results (if the status is Complete or Failed)</p>
 
@@ -236,6 +240,7 @@
 }
 </pre>
 
+---
 ## POST /api/check/{id}/accesslink
 <p>Generates a new one-time use access link for end users to access their check enrollment.</p>
 
