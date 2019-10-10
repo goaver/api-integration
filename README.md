@@ -25,8 +25,6 @@ GoAver.com uses permissioned API keys and Basic Authentication over HTTPS to all
 
 - [Generate a One-Time Check Access Link](https://github.com/goaver/api-integration/blob/master/docs/check.md#post-apicheckidaccesslink)
 
-- [Advanced Check Processing Functionality (beta)](https://github.com/goaver/api-integration/blob/master/docs/check-advanced.md)
-
 ### Watchlist (/api/watchlist)
 - [Create and Execute a Watchlist Search](https://github.com/goaver/api-integration/blob/master/docs/watchlist.md#post-apiwatchlistsearch)
 
@@ -43,6 +41,9 @@ GoAver.com uses permissioned API keys and Basic Authentication over HTTPS to all
 
 ## Quick Start Examples
 - [Create a Basic Live Check](https://github.com/goaver/api-integration/blob/master/docs/quickstart.md#create-basic-live-check)
+
+## Advanced Use Cases and Endpoints
+- [Advanced Check Processing Functionality (beta)](https://github.com/goaver/api-integration/blob/master/docs/check-advanced.md)
 
 ## Sample Code and Projects
 - [.NET Site / API Wrapper Example](https://github.com/goaver/api-integration/tree/master/examples/dotnet)
