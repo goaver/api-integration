@@ -49,7 +49,8 @@
     "CreditCard",
     "BankCard",
     "UtilityBill"
-  ]
+  ],
+  "watchlistRecheckInterval":30
 }
 </pre>
 
