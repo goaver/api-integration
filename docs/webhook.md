@@ -24,9 +24,11 @@ optional_security_header_key: optional_security_header_value
 ### Example Message content
 <pre>
 {
-   "type": "LiveCheck",
-   "id": "de97de74-bd63-4b18-b9b0-0c4ec755ab06"
-   "status": "Completed"
+   "statusMessage":{
+      "type": "LiveCheck",
+      "id": "de97de74-bd63-4b18-b9b0-0c4ec755ab06"
+      "status": "Completed"
+   }
 }
 </pre>
 
