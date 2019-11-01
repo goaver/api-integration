@@ -28,7 +28,19 @@
   "lastName":"User",
   "businessName":"They Work Here Corp",
   "country":"USA",
-  "stateOrProvince":"CA"
+  "stateOrProvince":"CA",
+  "categories":[
+        "Criminal",
+        "Terrorism",
+        "Financial",
+        "FinancialNotices",
+        "BorrowerDefaults",
+        "Political",
+        "Medical",
+        "Sexual",
+        "Gambling",
+        "Education"
+  ]
 }
 </pre>
 
