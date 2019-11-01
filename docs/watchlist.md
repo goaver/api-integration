@@ -15,6 +15,7 @@
 - <b>stateOrProvince (optional)</b> - The state for the individual or business
 - <b>fileContent (optional)</b> - Base64 image (JPG or PNG) Data URL of the photo containing the individual's face.  When provided, this will perform Visual Watchlist search in addition to the Text Watchlist search (associated fees apply).  Information about Data URL can be found [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs)
 - <b>fileName (required if fileContent is provided)</b> - The filename for the file content provided for the Visual Watchlist search
+- <b>categories (optional)</b> The watchlist categories to be searched, if omitted the default is to search based on the group settings.
 
 *NOTE: Either firstName + lastName or businessName must be provided at a minimum.
 
