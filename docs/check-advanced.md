@@ -26,7 +26,7 @@
 
 - <b>supplementalDocumentTypes (optional)</b> - The supplemental document types required to be submitted with this check
 
-- <b>watchlistSearchCategories (optional)</b> The watchlist categories to be searched - NOTE: This only applies if you are overriding the default check types and include Watchlist Search, otherwise group settings will be used to set the recurring watchlist search interval.
+- <b>watchlistSearchCategories (optional)</b> The watchlist categories to be searched - NOTE: if omitted, the default will use the group settings.
 
 - <b>watchlistRecheckInterval (optional)</b> - This will set the watchlist search that is created and searched as a result of this check as a recurring check to be performed automatically in the future at the specified interval.  Valid values are 7 (weekly) and 30 (monthly).  NOTE: This only applies if you are overriding the default check types and include Watchlist Search, otherwise group settings will be used to set the recurring watchlist search interval.  
 
