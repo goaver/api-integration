@@ -16,6 +16,8 @@
 
 - <b>returnUrl (optional)</b> - The url to redirect to for the user once they have completed the check enrollment workflow.  This is generally used for inline workflows.  The status / complete page will be shown at the end of enrollment if this is not set.
 
+- <b>skipPersonalAccessCode (optional)</b> - This option will skip the enrollment step of asking the user to create their own personal access code to access their enrollment.  NOTE: When this option is used, if the user is removed from the enrollment process for any reason (session timeout, error, exit, etc) they will be unable to re-access the enrollment without being provided a new access url from the API caller.  See https://github.com/goaver/api-integration/blob/master/docs/check.md#post-apicheckidaccesslink
+
 #### Example Request
 <pre>
 {
