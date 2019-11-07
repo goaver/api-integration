@@ -18,7 +18,7 @@
 ### Example Header
 <pre>
 content-type: application/json
-optional_security_header_key: optional_security_header_value
+authorization: my_security_header_value
 </pre>
 
 ### Example Message content
@@ -26,7 +26,7 @@ optional_security_header_key: optional_security_header_value
 {
    "statusMessage":{
       "type": "LiveCheck",
-      "id": "de97de74-bd63-4b18-b9b0-0c4ec755ab06"
+      "id": "12345"
       "status": "Completed"
    }
 }
