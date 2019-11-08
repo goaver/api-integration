@@ -18,7 +18,7 @@
 
 - <b>email (required)</b> - The e-mail address of the user the check is being created for that will be used to send access links to the user if necessary.
 
-- <b>language (optional)</b> - The default language to use for the check enrollment for the user (they can change the language during enrollment).  Options are "en"(English), "zh-Hans"(Chinese), and "fr"(French).  Default is English if this is not provided. 
+- <b>language (optional)</b> - The default language to use for the check enrollment for the user (they can change the language during enrollment).  Options are "en"(English), "zh-Hans"(Chinese), "es" (Spanish), and "fr"(French).  Default is English if this is not provided. 
 
 - <b>returnUrl (optional)</b> - The url to redirect to for the user once they have completed the check enrollment workflow.  This is generally used for inline workflows.  The status / complete page will be shown at the end of enrollment if this is not set.
 
