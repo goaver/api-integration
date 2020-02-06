@@ -147,6 +147,8 @@
 
 - <b>checkResults</b> - The result of the requested checks
 
+- <b>warnings</b> - The warnings found based on the configured warnings in group settings
+
 #### Example Response
 <pre>
 {
@@ -238,7 +240,11 @@
         "frequentComplainer": true
       }
     }
-  }
+  },
+  "warnings": [
+    "country",
+    "state"
+  ]
 }
 </pre>
 
