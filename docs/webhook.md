@@ -26,7 +26,8 @@ authorization: my_security_header_value
 {
    "statusMessage":{
       "type": "LiveCheck",
-      "id": "12345"
+      "id": "12345",
+      "groupId": " 12345",
       "status": "Completed"
    }
 }
@@ -36,5 +37,7 @@ authorization: my_security_header_value
 - <b>type</b> - The type of the entity (LiveCheck, OfflineCheck, WatchlistSearch, RecurringWatchlistSearch)
 
 - <b>id</b> - The id of the entity with the status change
+
+- <b>groupId</b> - The group id of the entity with the status change
 
 - <b>status</b> - The updated status (Complete, Rejected, Failed)
