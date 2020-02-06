@@ -198,7 +198,7 @@
       }
     }
   ],
-  [
+  "adverseMediaResults": [
     {
       "datePublished": "2019-12-12T15:36:00Z",
       "title": null,
