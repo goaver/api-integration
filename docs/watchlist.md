@@ -159,6 +159,7 @@
 - <b>lastRecheckDate</b> - The UTC date / time of the last recurring search that was done based on this search
 - <b>searchCriteria</b> - The search criteria provided for the search
 - <b>watchlistResults</b> - The list of matches found for the search criteria
+- <b>adverseMediaResults</b> - The list of adverse media results found for the search criteria
 
 #### Example Response
 <pre>
@@ -195,6 +196,23 @@
         "supensionEffectiveDate": "02/23/13",
         "suspensionInitiatedBy": "MLC"
       }
+    }
+  ],
+  [
+    {
+      "datePublished": "2019-12-12T15:36:00Z",
+      "title": null,
+      "description": "Some Random, a former Pro Bowl running back, is among several former NFL players who are facing federal charges in an alleged scheme to defraud the league's health care program for retired ...",
+      "name": "Some Random among retired NFL players facing federal fraud charges",
+      "source": "Fox News",
+      "url": "https://www.foxnews.com/sports/clinton-portis-retired-nfl-players-facing-federal-fraud-charges",
+      "matchScore": 0.4,
+      "businessMatchName": "Unavailable",
+      "firstNameMatch": "Match",
+      "middleNameMatch": "Unavailable",
+      "lastNameMatch": "Match",
+      "stateMatch": "NoMatch",
+      "countryMatch": "NoMatch"
     }
   ]
 }
