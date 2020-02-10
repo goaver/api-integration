@@ -36,8 +36,7 @@ function createCheck($check_url, $token, $group_id, $email, $third_party_identif
    $post = (object) [
        'groupId' => $group_id,
        'thirdPartyIdentifier' => $third_party_identifier,
-       'email' => $email,
-       'skipPersonalAccessCode' => 'true'
+       'email' => $email
    ];
 
    $ch = curl_init();
