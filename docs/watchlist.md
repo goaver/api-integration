@@ -1,4 +1,9 @@
-# Watchlist (/api/watchlist)
+---
+id: watchlist
+title: Watchlist Search
+sidebar_label: Watchlist Search
+---
+
 <p>This resource will allow the creation and retrieval of watchlist searches</p>
 
 ---
@@ -20,7 +25,7 @@
 *NOTE: Either firstName + lastName or businessName must be provided at a minimum.
 
 #### Example Request
-<pre>
+```
 {
   "groupId":"2d1162b5-d6a8-4936-be84-39ec873b7a60",
   "firstName":"Some",
@@ -42,17 +47,17 @@
         "Education"
   ]
 }
-</pre>
+```
 
 ### Response Parameters
 - <b>id</b> - The unique watchlist search id that was created
 
 #### Example Response
-<pre>
+```
 {
   "id": "f4d8f910-8a7b-42f0-ba40-2b2c17cb9118"
 }
-</pre>
+```
 
 ---
 ## GET api/watchlist/{id}
@@ -74,7 +79,7 @@
 - <b>searchCriteria</b> - The search criteria provided for the search
 
 #### Example Response
-<pre>
+```
 {
 "id": "f4d8f910-8a7b-42f0-ba40-2b2c17cb9118",
 "groupId": "2d1162b5-d6a8-4936-be84-39ec873b7a60",
@@ -94,7 +99,7 @@
     "stateProvince": "CA"
 }
 }
-</pre>
+```
 
 ---
 ## GET api/watchlist/getbycheckid/{checkId}
@@ -117,7 +122,7 @@
 - <b>searchCriteria</b> - The search criteria provided for the search
 
 #### Example Response
-<pre>
+```
 {
 "id": "f4d8f910-8a7b-42f0-ba40-2b2c17cb9118",
 "groupId": "2d1162b5-d6a8-4936-be84-39ec873b7a60",
@@ -135,10 +140,10 @@
     "businessName": "They Work Here Corp",
     "country": "USA",
     "stateProvince": "CA"
-},
+  },
 "watchlistResults": [],
 }
-</pre>
+```
 
 ---
 ## GET api/watchlist/{id}/results
@@ -162,7 +167,7 @@
 - <b>adverseMediaResults</b> - The list of adverse media results found for the search criteria
 
 #### Example Response
-<pre>
+```
 {
   "id": "f4d8f910-8a7b-42f0-ba40-2b2c17cb9118",
   "groupId": "2d1162b5-d6a8-4936-be84-39ec873b7a60",
@@ -216,7 +221,7 @@
     }
   ]
 }
-</pre>
+```
 
 ---
 ## GET api/watchlist/{id}/searchedlists
@@ -230,7 +235,7 @@
 - <b>version</b> - The version of that watchlist that was searched
 
 #### Example Response
-<pre>
+```
 [
   {
     "name": "ATF Most Wanted List",
@@ -241,5 +246,5 @@
     "version": "9/5/2019"
   }...
 ]
-</pre>
+```
 

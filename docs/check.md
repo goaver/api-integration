@@ -1,9 +1,13 @@
-# Check (/api/check)
-<p>This resource will allow the creation and retrieval of check enrollments and access links</p>
-
 ---
+id: check
+title: Verification Check (Simple)
+sidebar_label: Verification Check (Simple)
+---
+
+This resource will allow the creation and retrieval of check enrollments and access links
+
 ## POST /api/check/create
-<p>Creates a new check enrollment</p>
+Creates a new check enrollment
 
 ### Request Parameters
 - <b>thirdPartyIdentifier (required)</b> - A unique identifier for this create request to ensure uniqueness and prevent multiple checks being created on your behalf.  This could be a user account number or unique identifier within your existing application or randomly generated.
@@ -19,7 +23,7 @@
 - <b>skipPersonalAccessCode (optional)</b> - This option will skip the enrollment step of asking the user to create their own personal access code to access their enrollment.  NOTE: When this option is used, if the user is removed from the enrollment process for any reason (session timeout, error, exit, etc) they will be unable to re-access the enrollment without being provided a new access url from the API caller.  See https://github.com/goaver/api-integration/blob/master/docs/check.md#post-apicheckidaccesslink
 
 #### Example Request
-<pre>
+```
 {
   "groupId":"2d1162b5-d6a8-4936-be84-39ec873b7a60",
   "thirdPartyIdentifier":"123456",
@@ -27,7 +31,7 @@
   "language":"en",
   "returnUrl":"https://www.yoursite.com/page"
 }
-</pre>
+```
 
 ### Response Parameters
 - <b>checkId</b> - The unique identifier of the check 
@@ -37,17 +41,17 @@
 - <b>url</b> - The link url to be passed to the user to allow them to access this created enrollment and continue the process
 
 #### Example Response
-<pre>
+```
 {
 "checkId": "51771bd7-a5b5-4ab9-913c-f1dc15429f11",
 "thirdPartyIdentifier": "123456",
 "url": "https://app.goaver.com/CheckEnrollment/51771bd7-a5b5-4ab9-913c-f1dc15429f11?accessCode=a34bdce9b3b2412981f3aac6cb46ee3d&language=en&returnUrl=https%3a%2f%2fwww.yoursite.com%2fpage"
 }
-</pre>
+```
 
 ---
 ## GET /api/check/{id}
-<p>Gets the check information and status for a check using the Aver checkId returned when creating the check</p>
+Gets the check information and status for a check using the Aver checkId returned when creating the check<
 
 ### Request Parameters
 - [Path] <b>id (required)</b> - The unique identifier returned from the check create call
@@ -66,7 +70,7 @@
 - <b>checkTypes</b> - The list of check types / verifications performed as part of the check 
 
 #### Example Response
-<pre>
+```
 {
 "id": "51771bd7-a5b5-4ab9-913c-f1dc15429f11",
 "organiationId": "afa22173-6a46-4761-8308-27ad4b211c40",
@@ -84,11 +88,11 @@
   "AddressVerification"
 ]
 }
-</pre>
+```
 
 ---
 ## GET /api/check/getbythirdpartyidentifier/{id}
-<p>Gets the check information and status for a check from the third party identifier provided when creating the check</p>
+Gets the check information and status for a check from the third party identifier provided when creating the check
 
 ### Request Parameters
 - [Path] <b>id (required)</b> - The third party identifier provided during the check create call
@@ -107,7 +111,7 @@
 - <b>checkTypes</b> - The list of check types / verifications performed as part of the check 
 
 #### Example Response
-<pre>
+```
 {
 "id": "51771bd7-a5b5-4ab9-913c-f1dc15429f11",
 "organiationId": "afa22173-6a46-4761-8308-27ad4b211c40",
@@ -125,11 +129,11 @@
   "AddressVerification"
 ]
 }
-</pre>
+```
 
 ---
 ## GET /api/check/{id}/results
-<p>Gets the check information and status for a check including all results (if the status is Complete or Failed)</p>
+Gets the check information and status for a check including all results (if the status is Complete or Failed)
 
 ### Request Parameters
 - [Path] <b>id (required)</b> - The unique identifier for the check returned from the check create call
@@ -150,7 +154,7 @@
 - <b>warnings</b> - The warnings found based on the configured warnings in group settings
 
 #### Example Response
-<pre>
+```
 {
   "id": "51771bd7-a5b5-4ab9-913c-f1dc15429f11",
   "organiationId": "afa22173-6a46-4761-8308-27ad4b211c40",
@@ -246,11 +250,11 @@
     "state"
   ]
 }
-</pre>
+```
 
 ---
 ## POST /api/check/{id}/accesslink
-<p>Generates a new one-time use access link for end users to access their check enrollment.</p>
+Generates a new one-time use access link for end users to access their check enrollment.
 
 ### Request Parameters
 - [Path] <b>id (required)</b> - The unique identifier for the check returned from the check create call
@@ -260,19 +264,19 @@
 - <b>returnUrl (optional)</b> - The url to redirect to for the user once they have completed the check enrollment workflow.  This is generally used for inline workflows.  The status / complete page will be shown at the end of enrollment if this is not set.
 
 #### Example Request
-<pre>
+```
 {
   "language":"en",
   "returnUrl":"https://www.yoursite.com/page"
 }
-</pre>
+```
 
 ### Response Parameters
 - <b>url</b> - The url for the user to access their check enrollment
 
 #### Example Response
-<pre>
+```
 {
 "url": "http://app.goaver.com/CheckEnrollment/51771bd7-a5b5-4ab9-913c-f1dc15429f11?accessCode=904ec9f005224cbdbe431709c285fb22&language=en&returnUrl=https%3a%2f%2fwww.yoursite.com%2fpage"
 }
-</pre>
+```

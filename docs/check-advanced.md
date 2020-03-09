@@ -1,15 +1,16 @@
-# Advanced Check Functionality (/api/check)
-*NOTE: Advanced functionality is currently in beta*
-<p>Using advanced functionality of the check resource will allow deeper and more custom integration as well as offline checking using the Aver API.  This documentation extends the documentation for the check resource found here:
-  
-- [Basic Check Functionality](https://github.com/goaver/api-integration/blob/master/docs/check.md)
+---
+id: check-advanced
+title: Verification Check (Advanced)
+sidebar_label: Verification Check (Advanced)
+---
+
+Using advanced functionality of the check resource will allow deeper and more custom integration as well as offline checking using the Aver API.  This documentation extends the documentation for Verification Check (Simple)
 
 # Creating a Check With Check Group Default Overrides
-<p>Basic Check Create functionality will use the Check Group defaults configured to determine the Check Types, the required Supplemental Document Types, and Watchlist Search recurrence (if applicable).  If more control is needed in certain cases, the create call can override these defaults with extended parameters.</p>
+Basic Check Create functionality will use the Check Group defaults configured to determine the Check Types, the required Supplemental Document Types, and Watchlist Search recurrence (if applicable).  If more control is needed in certain cases, the create call can override these defaults with extended parameters.
 
----
 ## POST /api/check/create
-<p>Creates a new check enrollment overriding the Check Types and Supplemental Document Types required</p>
+Creates a new check enrollment overriding the Check Types and Supplemental Document Types required
 
 ### Request Parameters
 - <b>thirdPartyIdentifier (required)</b> - A unique identifier for this create request to ensure idempotentcy and prevent multiple checks being created on your behalf.  This could be a user account number or unique identifier within your existing application or randomly generated.
@@ -30,10 +31,12 @@
 
 - <b>watchlistRecheckInterval (optional)</b> - This will set the watchlist search that is created and searched as a result of this check as a recurring check to be performed automatically in the future at the specified interval.  Valid values are 7 (weekly) and 30 (monthly).  NOTE: This only applies if you are overriding the default check types and include Watchlist Search, otherwise group settings will be used to set the recurring watchlist search interval.
 
-- <b>skipPersonalAccessCode (optional)</b> - This option will skip the enrollment step of asking the user to create their own personal access code to access their enrollment.  NOTE: When this option is used, if the user is removed from the enrollment process for any reason (session timeout, error, exit, etc) they will be unable to re-access the enrollment without being provided a new access url from the API caller.  See https://github.com/goaver/api-integration/blob/master/docs/check.md#post-apicheckidaccesslink
+- <b>skipPersonalAccessCode (optional)</b> - This option will skip the enrollment step of asking the user to create their own personal access code to access their enrollment.
 
-#### Example Request
-<pre>
+  NOTE: When this option is used, if the user is removed from the enrollment process for any reason (session timeout, error, exit, etc) they will be unable to re-access the enrollment without being provided a new access url from the API caller.  See https://github.com/goaver/api-integration/blob/master/docs/check.md#post-apicheckidaccesslink
+
+  #### Example Request
+```
 {
   "groupId":"2d1162b5-d6a8-4936-be84-39ec873b7a60",
   "thirdPartyIdentifier":"123456",
@@ -70,7 +73,7 @@
   ],
   "watchlistRecheckInterval":30
 }
-</pre>
+```
 
 ### Response Parameters
 - <b>checkId</b> - The unique identifier of the check 
@@ -80,13 +83,13 @@
 - <b>url</b> - The link url that can be passed to the end user to allow them to proceed and provide their information via live enrollment. Note: if Document Verification is not defined as a Check Type, the url will be null since end user enrollment requires document verification at a minimum.
 
 #### Example Response
-<pre>
+```
 {
 "checkId": "51771bd7-a5b5-4ab9-913c-f1dc15429f11",
 "thirdPartyIdentifier": "123456",
 "url": "https://app.goaver.com/CheckEnrollment/51771bd7-a5b5-4ab9-913c-f1dc15429f11?accessCode=a34bdce9b3b2412981f3aac6cb46ee3d&language=en&returnUrl=https%3a%2f%2fwww.yoursite.com%2fpage"
 }
-</pre>
+```
 
 # Completing the Check via API Without End User Enrollment
 <p>If the check doesn't have a Check Type of Document Verification (in which case there is no URL), or you want to perform the check without live interaction with the end user, you can complete the check by providing all the data via the API on behalf of the user and then submitting the application to obtain your risk and report results.</p>
@@ -97,7 +100,6 @@
 
 ### Request Parameters
 - [Path] <b>id (required)</b> - The unique identifier returned from the check create call
-
 - <b>ipAddress (optional - depends on check types)</b> - individual's IP address
 - <b>companyName (optional - depends on check types)</b> - individual's company name
 - <b>firstName (required)</b> - individual's first name (given name)
@@ -114,7 +116,7 @@
 - <b>postalCode (optional - depends on check types)</b> - individual's residential postal code
 
 #### Example Request
-<pre>
+```
 {
   "email":"someone@somewhere.com",
   "ipAddress":"192.168.1.1",
@@ -131,7 +133,7 @@
   "city":"San Diego",
   "postalCode":"22434"
 }
-</pre>
+```
 
 ---
 ## POST /api/check/{id}/iddocument
@@ -146,7 +148,7 @@
 - <b>fileContent (required)</b> - Base64 image (JPG or PNG) Data URL of image containing the specified side of the document.  Information about Data URL can be found [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs)
 
 #### Example Request
-<pre>
+```
 {
   "forceCommit":false,
   "docType":"USALicenseIdCard",
@@ -154,7 +156,7 @@
   "fileName":"front.jpg",
   "fileContent":"data:image/jpeg;base64,/9j/4AAQSkZAmY7PhCfv..."
 }
-</pre>
+```
 
 ---
 ## POST /api/check/{id}/photodocument
@@ -167,26 +169,26 @@
 - <b>fileContent (required)</b> - Base64 image (JPG or PNG) Data URL of the image containing the individual's face.  Information about Data URL can be found [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs)
 
 #### Example Request
-<pre>
+```
 {
   "forceCommit":false,
   "fileName":"selfie.jpg",
   "fileContent":"data:image/jpeg;base64,/9j/4AAQSkZJRg..."
 }
-</pre>
+```
 
 ---
 ## POST /api/check/{id}/supplementaldocument
 <p>Use this endpoint to upload one or more supplemental documents to be used / included in the check.  This is only required for Accredited Investor check type or if any Supplemental Document Types were provided at the time the check was created or at the group level.</p>
 
 #### Example Request
-<pre>
+```
 {
   "docType":"AccreditedInvestor",
   "fileName":"accredited.jpg",
   "fileContent":"data:image/jpeg;base64,/9j/4AAQSkZJR..."
 }
-</pre>
+```
 
 ### Request Parameters
 - [Path] <b>id (required)</b> - The unique identifier returned from the check create call
