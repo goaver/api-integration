@@ -6,7 +6,7 @@ sidebar_label: Accessing the API
 
 To securely access the Aver API, you will need to authenticate to create an access token to grant access to API resources.
 
-## 1. Create your API key in your organization's GoAver.com account:
+### 1. Create your API key
 1. Navigate to Settings -> API Keys
 2. Add an API key
 3. Copy the "secret"
@@ -21,27 +21,25 @@ To securely access the Aver API, you will need to authenticate to create an acce
 <img src="https://raw.githubusercontent.com/goaver/api-integration/master/images/create_api_key_2.jpg"></img>
 </p>
 
-5. Find the group id of the group you want to create checks under
-
-<p>
-<img src="https://raw.githubusercontent.com/goaver/api-integration/master/images/get-group-id.jpg"></img>
-</p>
-
 ### 2. Create your Basic Authentication Header for your Request
-<b>Details on Basic Authentication can be found here:</b>
+#### Details on Basic Authentication can be found here:
 <p>
-https://en.wikipedia.org/wiki/Basic_access_authentication (see Client Side)
+<a href="https://en.wikipedia.org/wiki/Basic_access_authentication">https://en.wikipedia.org/wiki/Basic_access_authentication</a> (see Client Side)
 </p>
 
-<ol>
-<li>Concatenate [key]:[secret]</li>
-<li>Base64 encode the concatenated values</li>
-<li>Include the Base64 encoded value in the Authorization header for Basic auth</li>
-</ol>
+#### Steps to create a Basic Authentication request
+1. Concatenate [key]:[secret]
+2. Base64 encode the concatenated values 
+3. Include the Base64 encoded value in the Authorization header for Basic auth
+
+<p>
+<b>Protip:</b> For testing the API, <a href="https://www.base64encode.org/">https://www.base64encode.org</a> has a quick online base64 encoder.
+</p>
+
 
 ### 3. Call the API Auth Token Endpoint and get your token
 <p>
-Call the API auth endpoint with your basic authentication header to return a token so you can call other API endpoints and take further action.   Refer to [Get an API Auth Token](https://github.com/goaver/api-integration/blob/master/docs/auth.md#request).  The base API URL is https://app.goaver.com/api
+Call the <a href="/docs/auth">Authentication</a> endpoint with your basic authentication header to return a token so you can call other API endpoints and take further action. The base API URL is https://app.goaver.com/api
 </p>
 
 ### 4. Use your API Auth Token for all API Resource Calls
