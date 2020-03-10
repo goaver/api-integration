@@ -1,11 +1,11 @@
 module.exports = {
   title: 'Aver Identity Verification API',
   tagline: 'Identity that works',
-  url: 'https://goaver.github.io',
+  url: 'https://github.com/goaver/',
   baseUrl: '/',
   favicon: 'https://raw.githubusercontent.com/goaver/api-integration/master/images/aver_icon.png',
   organizationName: 'goaver', // Usually your GitHub org/user name.
-  projectName: 'api-integration', // Usually your repo name.
+  projectName: 'goaver.github.io', // Usually your repo name.
   themeConfig: {
     navbar: {
       title: '',
