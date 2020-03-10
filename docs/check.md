@@ -4,12 +4,12 @@ title: Verification Check (Simple)
 sidebar_label: Verification Check (Simple)
 ---
 
-This resource will allow the creation and retrieval of check enrollments and access links
+This resource provides the functioanlity of check creation, status retrieval, results retrieval, and access link generation.
 
-## POST /api/check/create
+### POST /api/check/create
 Creates a new check enrollment
 
-### Request Parameters
+#### Request Parameters
 - <b>thirdPartyIdentifier (required)</b> - A unique identifier for this create request to ensure uniqueness and prevent multiple checks being created on your behalf.  This could be a user account number or unique identifier within your existing application or randomly generated.
 
 - <b>groupId (required)</b> - The check group context you want this check to be created under.  (For details on managing your check groups, please see the GoAver.com product documentation)
@@ -20,9 +20,9 @@ Creates a new check enrollment
 
 - <b>returnUrl (optional)</b> - The url to redirect to for the user once they have completed the check enrollment workflow.  This is generally used for inline workflows.  The status / complete page will be shown at the end of enrollment if this is not set.
 
-- <b>skipPersonalAccessCode (optional)</b> - This option will skip the enrollment step of asking the user to create their own personal access code to access their enrollment.  NOTE: When this option is used, if the user is removed from the enrollment process for any reason (session timeout, error, exit, etc) they will be unable to re-access the enrollment without being provided a new access url from the API caller.  See https://github.com/goaver/api-integration/blob/master/docs/check.md#post-apicheckidaccesslink
+- <b>skipPersonalAccessCode (optional)</b> - This option will skip the enrollment step of asking the user to create their own personal access code to access their enrollment.  NOTE: When this option is used, if the user is removed from the enrollment process for any reason (session timeout, error, exit, etc) they will be unable to re-access the enrollment without being provided a new access url from the API caller.  See <a href="/docs/check#post-apicheckidaccesslink">Check Access Link</a> for more information on generating a new link.
 
-#### Example Request
+##### Example Request
 ```
 {
   "groupId":"2d1162b5-d6a8-4936-be84-39ec873b7a60",
@@ -33,14 +33,14 @@ Creates a new check enrollment
 }
 ```
 
-### Response Parameters
+#### Response Parameters
 - <b>checkId</b> - The unique identifier of the check 
   
 - <b>thirdPartyIdentifier</b> - The third party identifier for the created check (provided above)
 
 - <b>url</b> - The link url to be passed to the user to allow them to access this created enrollment and continue the process
 
-#### Example Response
+##### Example Response
 ```
 {
 "checkId": "51771bd7-a5b5-4ab9-913c-f1dc15429f11",
@@ -50,13 +50,13 @@ Creates a new check enrollment
 ```
 
 ---
-## GET /api/check/{id}
+### GET /api/check/{id}
 Gets the check information and status for a check using the Aver checkId returned when creating the check<
 
-### Request Parameters
+#### Request Parameters
 - [Path] <b>id (required)</b> - The unique identifier returned from the check create call
 
-### Response Parameters
+#### Response Parameters
 - <b>id</b> - The unique identifier of the check
   
 - <b>organizationId</b> - The parent organization of the check
@@ -69,7 +69,7 @@ Gets the check information and status for a check using the Aver checkId returne
 
 - <b>checkTypes</b> - The list of check types / verifications performed as part of the check 
 
-#### Example Response
+##### Example Response
 ```
 {
 "id": "51771bd7-a5b5-4ab9-913c-f1dc15429f11",
@@ -91,13 +91,13 @@ Gets the check information and status for a check using the Aver checkId returne
 ```
 
 ---
-## GET /api/check/getbythirdpartyidentifier/{id}
+### GET /api/check/getbythirdpartyidentifier/{id}
 Gets the check information and status for a check from the third party identifier provided when creating the check
 
-### Request Parameters
+#### Request Parameters
 - [Path] <b>id (required)</b> - The third party identifier provided during the check create call
 
-### Response Parameters
+#### Response Parameters
 - <b>id</b> - The unique identifier of the check
   
 - <b>organizationId</b> - The parent organization of the check
@@ -110,7 +110,7 @@ Gets the check information and status for a check from the third party identifie
 
 - <b>checkTypes</b> - The list of check types / verifications performed as part of the check 
 
-#### Example Response
+##### Example Response
 ```
 {
 "id": "51771bd7-a5b5-4ab9-913c-f1dc15429f11",
@@ -132,13 +132,13 @@ Gets the check information and status for a check from the third party identifie
 ```
 
 ---
-## GET /api/check/{id}/results
+### GET /api/check/{id}/results
 Gets the check information and status for a check including all results (if the status is Complete or Failed)
 
-### Request Parameters
+#### Request Parameters
 - [Path] <b>id (required)</b> - The unique identifier for the check returned from the check create call
 
-### Response Parameters
+#### Response Parameters
 - <b>id</b> - The unique identifier of the check
   
 - <b>organizationId</b> - The parent organization of the check
@@ -153,7 +153,7 @@ Gets the check information and status for a check including all results (if the 
 
 - <b>warnings</b> - The warnings found based on the configured warnings in group settings
 
-#### Example Response
+##### Example Response
 ```
 {
   "id": "51771bd7-a5b5-4ab9-913c-f1dc15429f11",
@@ -253,17 +253,17 @@ Gets the check information and status for a check including all results (if the 
 ```
 
 ---
-## POST /api/check/{id}/accesslink
+### POST /api/check/{id}/accesslink
 Generates a new one-time use access link for end users to access their check enrollment.
 
-### Request Parameters
+#### Request Parameters
 - [Path] <b>id (required)</b> - The unique identifier for the check returned from the check create call
 
 - <b>language (optional)</b> - The default language to use for the check enrollment for the user (they can change the language during enrollment).  Options are "en"(English), "zh-Hans"(Chinese), and "fr"(French).  Default is English if this is not provided. 
 
 - <b>returnUrl (optional)</b> - The url to redirect to for the user once they have completed the check enrollment workflow.  This is generally used for inline workflows.  The status / complete page will be shown at the end of enrollment if this is not set.
 
-#### Example Request
+##### Example Request
 ```
 {
   "language":"en",
@@ -271,10 +271,10 @@ Generates a new one-time use access link for end users to access their check enr
 }
 ```
 
-### Response Parameters
+#### Response Parameters
 - <b>url</b> - The url for the user to access their check enrollment
 
-#### Example Response
+##### Example Response
 ```
 {
 "url": "http://app.goaver.com/CheckEnrollment/51771bd7-a5b5-4ab9-913c-f1dc15429f11?accessCode=904ec9f005224cbdbe431709c285fb22&language=en&returnUrl=https%3a%2f%2fwww.yoursite.com%2fpage"

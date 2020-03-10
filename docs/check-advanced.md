@@ -4,15 +4,15 @@ title: Verification Check (Advanced)
 sidebar_label: Verification Check (Advanced)
 ---
 
-Using advanced functionality of the check resource will allow deeper and more custom integration as well as offline checking using the Aver API.  This documentation extends the documentation for Verification Check (Simple)
+Using advanced functionality of the check endpoint will allow deeper and more custom integration as well as offline checking using the Aver API.  This documentation extends the documentation for <a href="docs/check">Verification Check (Simple)</a>
 
-# Creating a Check With Check Group Default Overrides
+## Create a Check with Check Group Default Overrides
 Basic Check Create functionality will use the Check Group defaults configured to determine the Check Types, the required Supplemental Document Types, and Watchlist Search recurrence (if applicable).  If more control is needed in certain cases, the create call can override these defaults with extended parameters.
 
-## POST /api/check/create
+### POST /api/check/create
 Creates a new check enrollment overriding the Check Types and Supplemental Document Types required
 
-### Request Parameters
+#### Request Parameters
 - <b>thirdPartyIdentifier (required)</b> - A unique identifier for this create request to ensure idempotentcy and prevent multiple checks being created on your behalf.  This could be a user account number or unique identifier within your existing application or randomly generated.
 
 - <b>groupId (required)</b> - The check group context you want this check to be created under.  (For details on managing your check groups, please see the GoAver.com product documentation)
@@ -31,11 +31,9 @@ Creates a new check enrollment overriding the Check Types and Supplemental Docum
 
 - <b>watchlistRecheckInterval (optional)</b> - This will set the watchlist search that is created and searched as a result of this check as a recurring check to be performed automatically in the future at the specified interval.  Valid values are 7 (weekly) and 30 (monthly).  NOTE: This only applies if you are overriding the default check types and include Watchlist Search, otherwise group settings will be used to set the recurring watchlist search interval.
 
-- <b>skipPersonalAccessCode (optional)</b> - This option will skip the enrollment step of asking the user to create their own personal access code to access their enrollment.
+- <b>skipPersonalAccessCode (optional)</b> - This option will skip the enrollment step of asking the user to create their own personal access code to access their enrollment.  NOTE: When this option is used, if the user is removed from the enrollment process for any reason (session timeout, error, exit, etc) they will be unable to re-access the enrollment without being provided a new access url from the API caller.  See <a href="/docs/check#post-apicheckidaccesslink">Check Access Link</a> for more information on generating a new link.
 
-  NOTE: When this option is used, if the user is removed from the enrollment process for any reason (session timeout, error, exit, etc) they will be unable to re-access the enrollment without being provided a new access url from the API caller.  See https://github.com/goaver/api-integration/blob/master/docs/check.md#post-apicheckidaccesslink
-
-  #### Example Request
+##### Example Request
 ```
 {
   "groupId":"2d1162b5-d6a8-4936-be84-39ec873b7a60",
@@ -75,14 +73,14 @@ Creates a new check enrollment overriding the Check Types and Supplemental Docum
 }
 ```
 
-### Response Parameters
+#### Response Parameters
 - <b>checkId</b> - The unique identifier of the check 
   
 - <b>thirdPartyIdentifier</b> - The third party identifier for the created check (provided above)
 
 - <b>url</b> - The link url that can be passed to the end user to allow them to proceed and provide their information via live enrollment. Note: if Document Verification is not defined as a Check Type, the url will be null since end user enrollment requires document verification at a minimum.
 
-#### Example Response
+##### Example Response
 ```
 {
 "checkId": "51771bd7-a5b5-4ab9-913c-f1dc15429f11",
@@ -91,14 +89,14 @@ Creates a new check enrollment overriding the Check Types and Supplemental Docum
 }
 ```
 
-# Completing the Check via API Without End User Enrollment
+## Complete the Check via API without User Enrollment
 <p>If the check doesn't have a Check Type of Document Verification (in which case there is no URL), or you want to perform the check without live interaction with the end user, you can complete the check by providing all the data via the API on behalf of the user and then submitting the application to obtain your risk and report results.</p>
 
 ---
-## POST /api/check/{id}/personalinfo
+### POST /api/check/{id}/personalinfo
 <p>Provide all the user information required by the check type(s)</p>
 
-### Request Parameters
+#### Request Parameters
 - [Path] <b>id (required)</b> - The unique identifier returned from the check create call
 - <b>ipAddress (optional - depends on check types)</b> - individual's IP address
 - <b>companyName (optional - depends on check types)</b> - individual's company name
@@ -115,7 +113,7 @@ Creates a new check enrollment overriding the Check Types and Supplemental Docum
 - <b>city (optional - depends on check types)</b> - individual's city of residence
 - <b>postalCode (optional - depends on check types)</b> - individual's residential postal code
 
-#### Example Request
+##### Example Request
 ```
 {
   "email":"someone@somewhere.com",
@@ -136,18 +134,18 @@ Creates a new check enrollment overriding the Check Types and Supplemental Docum
 ```
 
 ---
-## POST /api/check/{id}/iddocument
+### POST /api/check/{id}/iddocument
 <p>Use this endpoint to upload the ID document to be used in the check.  This is only required for Document Verification and Photo Verification check types that were specified at check create or at the group level</p>
 
-### Request Parameters
+#### Request Parameters
 - [Path] <b>id (required)</b> - The unique identifier returned from the check create call
 - <b>forceCommit (optional)</b> - if "true" this will ignore any errors in document processing (facial recognition, OCR, etc) and may result in a delayed result requiring additional processing or a failed check result if the image is unreadable.
 - <b>docType (required)</b> - the type of identification document being provided 
 - <b>side (required)</b> - the side of the document being provided "Front","Back" 
 - <b>fileName (required)</b> - the filename of the image being uploaded
-- <b>fileContent (required)</b> - Base64 image (JPG or PNG) Data URL of image containing the specified side of the document.  Information about Data URL can be found [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs)
+- <b>fileContent (required)</b> - Base64 image (JPG or PNG) Data URL of image containing the specified side of the document.  Information about Data URL can be found <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs">here</a>
 
-#### Example Request
+##### Example Request
 ```
 {
   "forceCommit":false,
@@ -159,16 +157,16 @@ Creates a new check enrollment overriding the Check Types and Supplemental Docum
 ```
 
 ---
-## POST /api/check/{id}/photodocument
+### POST /api/check/{id}/photodocument
 <p>Use this endpoint to upload the photo / selfie document to be used in the check.  This is only required for Photo Verification and Visual Watchlist check types that were specified at check create or at the group level.</p>
 
-### Request Parameters
+#### Request Parameters
 - [Path] <b>id (required)</b> - The unique identifier returned from the check create call
 - <b>forceCommit (optional)</b> - if "true" this will ignore any errors in document processing (facial recognition) and may result in a delayed result requiring additional processing or a failed check result if the image is unreadable.
 - <b>fileName (required)</b> - the filename of the image being uploaded
-- <b>fileContent (required)</b> - Base64 image (JPG or PNG) Data URL of the image containing the individual's face.  Information about Data URL can be found [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs)
+- <b>fileContent (required)</b> - Base64 image (JPG or PNG) Data URL of the image containing the individual's face.  Information about Data URL can be found <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs">here</a>
 
-#### Example Request
+##### Example Request
 ```
 {
   "forceCommit":false,
@@ -178,7 +176,7 @@ Creates a new check enrollment overriding the Check Types and Supplemental Docum
 ```
 
 ---
-## POST /api/check/{id}/supplementaldocument
+### POST /api/check/{id}/supplementaldocument
 <p>Use this endpoint to upload one or more supplemental documents to be used / included in the check.  This is only required for Accredited Investor check type or if any Supplemental Document Types were provided at the time the check was created or at the group level.</p>
 
 #### Example Request
@@ -190,15 +188,15 @@ Creates a new check enrollment overriding the Check Types and Supplemental Docum
 }
 ```
 
-### Request Parameters
+#### Request Parameters
 - [Path] <b>id (required)</b> - The unique identifier returned from the check create call
 - <b>docType (required)</b> - the type of supplemental document being provided 
 - <b>fileName (required)</b> - the filename of the image being uploaded
-- <b>fileContent (required)</b> - Base64 image (JPG or PNG) Data URL of the image containing page of the document to be uploaded.  Information about Data URL can be found [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs)
+- <b>fileContent (required)</b> - Base64 image (JPG or PNG) Data URL of the image containing page of the document to be uploaded.  Information about Data URL can be found <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs">here</a>
 
 ---
-## GET /api/check/{id}/submit
+### GET /api/check/{id}/submit
 <p>After all the required data and images are uploaded for the required check types and supplemental document types, this endpoint is called to finalize and process the check.  If the check is able to be completed immediately, it will return the full results of the check, otherwise the status will be returned and the results can be retrieved after the check is completed asynchronously.  This will perform all validation required based on the specified check types defined as to what user information and documents need to be present - if any element is missing, an error will be returned reflecting the missing information.</p>
 
-### Request Parameters
+#### Request Parameters
 - [Path] <b>id (required)</b> - The unique identifier returned from the check create call
