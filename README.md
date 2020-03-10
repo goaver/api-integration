@@ -4,5 +4,7 @@
 
 <h1 align="center">GoAver.com API Integration</h1>
 
-Please view the API using the updated site located at: 
+<center>
+Aver Identity Verification API Documentation has been moved to
 [https://goaver.github.io](https://goaver.github.io)
+</center>
