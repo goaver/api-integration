@@ -1,42 +1,55 @@
-# Accessing the Aver REST API
+---
+id: accessing
+title: Accessing the API
+sidebar_label: Accessing the API
+---
 
-## 1. Create your API key in your organization's GoAver.com account:
-1. Navigate to Settings -> API Keys
-2. Add an API key
-3. Copy the "secret"
+To securely access the Aver API, you will need to authenticate to create an authentication bearer token to grant access to API endpoints.  An inital basic authentication request is made to retrieve the bearer token, and that token is then used in all subsequent calls to authenticate the request.
 
-<p align="center">
-<img src="../images/create_api_key_1.jpg?raw=true?raw=true" width="450px">
+### 1. Create an API key
+1. Login to the Aver Portal
+2. Go to Settings under your organization in the left nav bar
+3. Find the integrations tab and select API Keys
+4. Add an API key with "Portal User" scope
+5. Copy the "secret"
+
+<p>
+<img src="https://raw.githubusercontent.com/goaver/api-integration/master/images/create_api_key_1.jpg"></img>
 </p>
 
 4. View the key that was created and copy the "key"
 
-<p align="center">
-<img src="../images/create_api_key_2.jpg?raw=true" width="600px">
+<p>
+<img src="https://raw.githubusercontent.com/goaver/api-integration/master/images/create_api_key_2.jpg"></img>
 </p>
 
-5. Find the group id of the group you want to create checks under
+### 2. Retrieve the Bearer Token
 
-<p align="center">
-<img src="../images/get-group-id.jpg?raw=true" width="600px">
-</p>
+To retrieve the authentication bearer token, a basic authentication request is made using the API key and secret to validate your organization and return a scoped bearer token to grant access to API resources. Additional details on basic authentication can be found at <a href="https://en.wikipedia.org/wiki/Basic_access_authentication">https://en.wikipedia.org/wiki/Basic_access_authentication</a> (see Client Side)
 
-### 2. Create your Basic Authentication Header for your Request
-<b>Details on Basic Authentication can be found here:</b><br>
-https://en.wikipedia.org/wiki/Basic_access_authentication (see Client Side)
 
-1. Concatenate < key >:< secret >
-2. Base64 encode the concatenated values
+#### Create a Basic Authentication request
+1. Concatenate [key]:[secret]
+2. Base64 encode the concatenated values 
 3. Include the Base64 encoded value in the Authorization header for Basic auth
-  
-### 3. Call the API Auth Token Endpoint and get your token
-Call the API auth endpoint with your basic authentication header to return a token so you can call other API endpoints and take further action.   Refer to [Get an API Auth Token](https://github.com/goaver/api-integration/blob/master/docs/auth.md#request).  The base API URL is https://app.goaver.com/api
 
-### 4. Use your API Auth Token for all API Resource Calls
-<p>For any resource request, the endpoint will require the Authorization header to be set as a bearer token with the token you generated in the previous step.<p>
-  
-### Example Request Header
-<pre>
+<p>
+<b>Protip:</b> For testing the API, <a href="https://www.base64encode.org/">https://www.base64encode.org</a> has a quick online base64 encoder.
+</p>
+
+
+#### Call the Authentication Endpoint
+<p>
+Call the <a href="/docs/auth">Authentication</a> endpoint with your basic authentication header to return a token so you can call other API endpoints and take further action. The base API URL is <b>https://app.goaver.com/api</b>
+</p>
+
+### 3. Calling API Endpoints
+<p>
+For any resource request, the endpoint will require the authorization header to be set as a bearer token with the token you generated in the previous step.
+</p>
+
+```
 content-type: application/json
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFmYTIyMTczLTZhNDYtNDc2MS04MzA4LTI3YWQ0YjIxMWM0MCIsInJvbGUiOiJQb3J0YWxVc2VyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy91c2VyZGF0YSI6IntcIklkXCI6XCJhZmEyMjE3My02YTQ2LTQ3NjEtODMwOC0yN2FkNGIyMTFjNDBcIixcIkF1dGhUeXBlXCI6MixcIkRhdGFcIjpudWxsfSIsIm5iZiI6MTU3MDE5NjE4NiwiZXhwIjoxNTcwMTk5Nzg2LCJpYXQiOjE1NzAxOTYxODYsImlzcyI6InNlbGYiLCJhdWQiOiJodHRwOi8vZ29hdmVyLmNvbSJ9.XZmHyG_IVurCvpsNM_8R-ACzz9jReafpww9hrr3vyr4
-</pre>
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJ1bmlxdWVfbmFtZSI6ImFmYTIyMTczLTZhNDYtNDc2MS04MzA4LTI3YWQ0YjIxMWM0MCIsInJvbGUiOiJQb3J0YWxVc2VyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy91c2VyZGF0YSI6IntcIklkXCI6XCJhZmEyMjE3My02YTQ2LTQ3NjEtODMwOC0yN2FkNGIyMTFjNDBcIixcIkF1dGhUeXBlXCI6MixcIkRhdGFcIjpudWxsfSIsIm5iZiI6MTU3MDE5NjE4NiwiZXhwIjoxNTcwMTk5Nzg2LCJpYXQiOjE1NzAxOTYxODYsImlzcyI6InNlbGYiLCJhdWQiOiJodHRwOi8vZ29hdmVyLmNvbSJ9XZmHyGIVurCvpsNM8RACzz9jReafpww9hrr3vyr4
+```
+

@@ -1,28 +1,50 @@
-# Receiving Active Notifications via Webhooks
+---
+id: webhook
+title: Active Notifications
+sidebar_label: Active Notifications
+---
 
-## 1. Configure your Webhook Endpoint for Notifications
-1. Navigate to Settings -> Integration
-2. Configure the URL of your Webhook listener endpoint (Aver will POST to this endpoint)
-3. Optionally add a security header key and security header value to be provided with each request from Aver to your endpoint
-4. Configure the types of notifications you want to receive
+Aver can send active notifications via webhooks and / or e-mail about the checks created and completed within an organization.  This removes the overhead of manually polling the API to retrieve the status of a given check and actively notifies you when results are available for the check.
 
-<p align="center">
-<img src="../images/webhooks.jpg?raw=true?raw=true" width="450px">
-</p>
+### Configure Notification Options
+<ol>
+   <li>Login to the Aver portal</li>
+   <li>Go to Settings under your organization in the left nav bar</li>
+   <li>Set your desired notification types and delivery mechanism</li>
+</ol>
 
-## 2. Test your configuration
+### Configure E-Mail Notifications
+<ol>
+<li>Specify the delivery e-mail address</li>
+<li>Configure the types of notifications you want to receive</li>
+</ol>
+
+### Configure Webhook Notifications
+To receive notifications via webhook, you must configure an endpoint on your site that can receive POST requests.  After you have an endpoint running that can receive messages from Aver, simply set the configuration to send messages to that endpoint.
+#### Configure an Endpoint
+<ol>
+<li>Configure the URL of your Webhook listener endpoint (Aver will POST to this endpoint)</li>
+<li>Optionally add a security header key and security header value to be provided with each request from Aver to your endpoint</li>
+<li>Configure the types of notifications you want to receive</li>
+</ol>
+
 <p>
-<b>Protip:</b>  To test the requests coming from Aver to know what to expect to your endpoint and to test your configuration, https://webhook.site provides temporary endpoint for testing to give full visibility
+<img src="https://raw.githubusercontent.com/goaver/api-integration/master/images/webhooks.jpg"></img>
 </p>
 
-### Example Header
-<pre>
+#### Test the Configuration
+<p>
+<b>Protip:</b> To test the requests coming from Aver to know what to expect to your endpoint and to test your configuration, https://webhook.site provides temporary endpoint for testing to give full visibility
+</p>
+
+##### Example Header
+```
 content-type: application/json
 authorization: my_security_header_value
-</pre>
+```
 
-### Example Message content
-<pre>
+##### Example Message content
+```
 {
    "statusMessage":{
       "type": "LiveCheck",
@@ -31,9 +53,9 @@ authorization: my_security_header_value
       "status": "Completed"
    }
 }
-</pre>
+```
 
-### Message Parameters
+##### Message Parameters
 - <b>type</b> - The type of the entity (LiveCheck, OfflineCheck, WatchlistSearch, RecurringWatchlistSearch)
 
 - <b>id</b> - The id of the entity with the status change

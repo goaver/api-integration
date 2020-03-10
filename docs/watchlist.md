@@ -1,11 +1,15 @@
-# Watchlist (/api/watchlist)
-<p>This resource will allow the creation and retrieval of watchlist searches</p>
-
 ---
-## POST api/watchlist/search
-<p></p>
+id: watchlist
+title: Watchlist Search
+sidebar_label: Watchlist Search
+---
 
-### Request Parameters
+This resource provides access to the watchlist search and adverse media search functionality.
+
+### POST api/watchlist/search
+<p>Performs a watchlist search with the specified search criteria</p>
+
+#### Request Parameters
 - <b>groupId (required)</b> - The check group the search is in
 - <b>firstName (optional *)</b> - The individual's first name
 - <b>middleName (optional )</b> - The individual's middle name
@@ -13,14 +17,14 @@
 - <b>businessName (optional *)</b> - The business / organization name to search
 - <b>country (optional)</b> - The country for the individual or business
 - <b>stateOrProvince (optional)</b> - The state for the individual or business
-- <b>fileContent (optional)</b> - Base64 image (JPG or PNG) Data URL of the photo containing the individual's face.  When provided, this will perform Visual Watchlist search in addition to the Text Watchlist search (associated fees apply).  Information about Data URL can be found [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs)
+- <b>fileContent (optional)</b> - Base64 image (JPG or PNG) Data URL of the photo containing the individual's face.  When provided, this will perform Visual Watchlist search in addition to the Text Watchlist search (associated fees apply).  Information about Data URL can be found <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs">here</a>
 - <b>fileName (required if fileContent is provided)</b> - The filename for the file content provided for the Visual Watchlist search
 - <b>categories (optional)</b> The watchlist categories to be searched, if omitted the default is to search based on the group settings.
 
-*NOTE: Either firstName + lastName or businessName must be provided at a minimum.
+<b>*NOTE:</b> Either firstName + lastName or businessName must be provided at a minimum.
 
-#### Example Request
-<pre>
+##### Example Request
+```
 {
   "groupId":"2d1162b5-d6a8-4936-be84-39ec873b7a60",
   "firstName":"Some",
@@ -42,26 +46,26 @@
         "Education"
   ]
 }
-</pre>
+```
 
-### Response Parameters
+#### Response Parameters
 - <b>id</b> - The unique watchlist search id that was created
 
-#### Example Response
-<pre>
+##### Example Response
+```
 {
   "id": "f4d8f910-8a7b-42f0-ba40-2b2c17cb9118"
 }
-</pre>
+```
 
 ---
-## GET api/watchlist/{id}
+### GET api/watchlist/{id}
 <p>Retrieves the search and status information for the specified watchlist search</p>
 
-### Request Parameters
+#### Request Parameters
 - [Path] <b>id (required)</b> - The watchlist search id returned from the search call
 
-### Response Parameters
+#### Response Parameters
 - <b>id</b> - The unique id of the search
 - <b>groupId</b> - The group of the search
 - <b>organizationId</b> - The organization of the search
@@ -73,8 +77,8 @@
 - <b>lastRecheckDate</b> - The UTC date / time of the last recurring search that was done based on this search
 - <b>searchCriteria</b> - The search criteria provided for the search
 
-#### Example Response
-<pre>
+##### Example Response
+```
 {
 "id": "f4d8f910-8a7b-42f0-ba40-2b2c17cb9118",
 "groupId": "2d1162b5-d6a8-4936-be84-39ec873b7a60",
@@ -94,17 +98,16 @@
     "stateProvince": "CA"
 }
 }
-</pre>
+```
 
 ---
-## GET api/watchlist/getbycheckid/{checkId}
-<p>Retrieves the watchlist search that was created as the result of a check enrollment that had a check type of watchlist search associated with it - refer to: https://github.com/goaver/api-integration/blob/master/docs/check.md#get-apicheckidresults
-</p>
+### GET api/watchlist/getbycheckid/{checkId}
+Retrieves the watchlist search that was created as the result of a check enrollment that had a check type of watchlist search associated with it.
 
-### Request Parameters
+#### Request Parameters
 - [Path] <b>checkId (required)</b> - The check enrollment that the watchlist search was created from
 
-### Response Parameters
+#### Response Parameters
 - <b>id</b> - The unique id of the search
 - <b>groupId</b> - The group of the search
 - <b>organizationId</b> - The organization of the search
@@ -116,8 +119,8 @@
 - <b>lastRecheckDate</b> - The UTC date / time of the last recurring search that was done based on this search
 - <b>searchCriteria</b> - The search criteria provided for the search
 
-#### Example Response
-<pre>
+##### Example Response
+```
 {
 "id": "f4d8f910-8a7b-42f0-ba40-2b2c17cb9118",
 "groupId": "2d1162b5-d6a8-4936-be84-39ec873b7a60",
@@ -135,19 +138,19 @@
     "businessName": "They Work Here Corp",
     "country": "USA",
     "stateProvince": "CA"
-},
+  },
 "watchlistResults": [],
 }
-</pre>
+```
 
 ---
-## GET api/watchlist/{id}/results
+### GET api/watchlist/{id}/results
 <p>Retrieves the results for a specified watchlist</p>
 
-### Request Parameters
+#### Request Parameters
 - [Path] <b>id (required)</b> - The watchlist search id returned from the search call
 
-### Response Parameters
+#### Response Parameters
 - <b>id</b> - The unique id of the search
 - <b>groupId</b> - The group of the search
 - <b>organizationId</b> - The organization of the search
@@ -161,8 +164,8 @@
 - <b>watchlistResults</b> - The list of matches found for the search criteria
 - <b>adverseMediaResults</b> - The list of adverse media results found for the search criteria
 
-#### Example Response
-<pre>
+##### Example Response
+```
 {
   "id": "f4d8f910-8a7b-42f0-ba40-2b2c17cb9118",
   "groupId": "2d1162b5-d6a8-4936-be84-39ec873b7a60",
@@ -216,21 +219,21 @@
     }
   ]
 }
-</pre>
+```
 
 ---
-## GET api/watchlist/{id}/searchedlists
+### GET api/watchlist/{id}/searchedlists
 <p>Retrieves the list of watchlists names and versions that were searched for the results</p>
 
-### Request Parameters
+#### Request Parameters
 - [Path] <b>id (required)</b> - The watchlist search id returned from the search call
 
-### Response Parameters
+#### Response Parameters
 - <b>name</b> - The name of the list that was searched
 - <b>version</b> - The version of that watchlist that was searched
 
-#### Example Response
-<pre>
+##### Example Response
+```
 [
   {
     "name": "ATF Most Wanted List",
@@ -241,5 +244,5 @@
     "version": "9/5/2019"
   }...
 ]
-</pre>
+```
 
