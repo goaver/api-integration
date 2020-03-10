@@ -1,6 +1,6 @@
 module.exports = {
   someSidebar: {
-    'Getting Started': ['quickstart','accessing','webhook'],
+    'Getting Started': ['overview','quickstart','accessing','webhook'],
     'Endpoints':['auth','check','check-advanced','watchlist']
   },
 };

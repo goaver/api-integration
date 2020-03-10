@@ -15,35 +15,20 @@ module.exports = {
       },
       links: [
         {
-          to: '/docs/quickstart',
+          to: '/docs/overview',
           activeBasePath: '../docs',
-          label: 'API Documentation',
+          label: 'Documentation',
           position: 'left',
+        },
+        {
+          href: 'https://github.com/goaver/api-integration/tree/master/examples',
+          label: 'Code Examples'
         }
       ]
     },
     footer: {
       style: 'dark',
-      links: [
-        //{
-        //  title: 'Social',
-        //  items: [
-        //     {
-        //       label: 'Blog',
-        //       to: 'blog',
-        //     },
-        //     {
-        //       label: 'GitHub',
-        //       href: 'https://github.com/facebook/docusaurus',
-        //     },
-        //     {
-        //       label: 'Twitter',
-        //       href: 'https://twitter.com/docusaurus',
-        //     },
-        //   ],
-        // },
-      ],
-      copyright: `Copyright © ${new Date().getFullYear()} Aver, LLC.`,
+      copyright: `Copyright © ${new Date().getFullYear()} <a href="https://www.goaver.com">Aver, LLC.</a>`,
     },
   },
   presets: [
@@ -52,9 +37,7 @@ module.exports = {
       {
         docs: {
           path: '../docs',
-          sidebarPath: require.resolve('./sidebars.js'),
-          editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/',
+          sidebarPath: require.resolve('./sidebars.js')
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
