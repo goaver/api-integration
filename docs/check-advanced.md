@@ -179,7 +179,7 @@ Creates a new check enrollment overriding the Check Types and Supplemental Docum
 ### POST /api/check/{id}/supplementaldocument
 <p>Use this endpoint to upload one or more supplemental documents to be used / included in the check.  This is only required for Accredited Investor check type or if any Supplemental Document Types were provided at the time the check was created or at the group level.</p>
 
-#### Example Request
+##### Example Request
 ```
 {
   "docType":"AccreditedInvestor",
