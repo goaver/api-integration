@@ -25,7 +25,8 @@
 }
 
 h1 {
-  margin-top: 10px !important;
+  font-size: 2em !important;
+  margin-top: 0px !important;
   margin-bottom: 10px !important;
 }
 
@@ -35,4 +36,10 @@ h2 {
 
 h3, h4 {
   margin-top: 6px !important;
+}
+
+.button{
+  border: 0px;
+  background: #303846 !important;
+  color: #FFFFFF !important;
 }

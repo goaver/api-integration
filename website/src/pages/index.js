@@ -11,7 +11,7 @@ const features = [
     title: <>The Power of Aver Verification</>,
     description: (
       <>
-        The Power of Aver Verification...
+        Integrate and harness the power of Aver to verify your users in your applications.  Verify identification documents, perform international watchlist searches, and check adverse media.
       </>
     ),
   },
@@ -19,7 +19,7 @@ const features = [
     title: <>Easy-to-use REST API</>,
     description: (
       <>
-        Simple REST API...
+        Aver provides a secure and easy-to-use API.  Regardless of your platform or language, access the Aver API using a standard REST API to take advantage of all Aver Verification features.
       </>
     ),
   },
@@ -27,7 +27,7 @@ const features = [
     title: <>Flexible Integration Options</>,
     description: (
       <>
-        Flexible Integration Options...
+        Whether you only want to write a few lines of code and use a hosted enrollment for your users, all the way to collecting and providing your own data, there are flexible options to suit your needs.
       </>
     ),
   }
@@ -57,13 +57,13 @@ function Home() {
       description="Description will go into a meta tag in <head />">
       <header className={classnames('hero hero--primary', styles.heroBanner)}>
         <div className="container">
-          <img src="https://raw.githubusercontent.com/goaver/api-integration/master/images/aver_logo.png"></img>
+          <img src="/static/img/aver_logo_inverted.png"></img>
           <h1 className="hero__title">{siteConfig.title}</h1>
-          <p className="hero__subtitle">{siteConfig.tagline}</p>
+          <p className="hero__subtitle"></p>
           <div className={styles.buttons}>
             <Link
               className={classnames(
-                'button button--outline button--secondary button--lg',
+                'button button--secondary button--lg',
                 styles.getStarted,
               )}
               to={useBaseUrl('docs/quickstart')}>

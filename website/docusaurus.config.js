@@ -1,5 +1,5 @@
 module.exports = {
-  title: 'Aver Identity Verification API',
+  title: 'Identity Verification API',
   tagline: 'Identity that works',
   url: 'https://github.com/goaver/',
   baseUrl: '/',
