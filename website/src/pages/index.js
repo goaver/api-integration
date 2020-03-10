@@ -57,7 +57,7 @@ function Home() {
       description="Description will go into a meta tag in <head />">
       <header className={classnames('hero hero--primary', styles.heroBanner)}>
         <div className="container">
-          <img src="/static/img/aver_logo_inverted.png"></img>
+          <img src="https://raw.githubusercontent.com/goaver/api-integration/master/images/ver_logo_inverted.png"></img>
           <h1 className="hero__title">{siteConfig.title}</h1>
           <p className="hero__subtitle"></p>
           <div className={styles.buttons}>
