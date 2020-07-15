@@ -22,7 +22,8 @@ module.exports = {
         },
         {
           href: 'https://github.com/goaver/api-integration/tree/master/examples',
-          label: 'Code Examples'
+          label: 'Code Examples',
+          position: 'left'
         }
       ]
     },
