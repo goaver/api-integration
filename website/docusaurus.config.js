@@ -3,7 +3,7 @@ module.exports = {
   tagline: 'Identity that works',
   url: 'https://github.com/goaver',
   baseUrl: '/',
-  favicon: 'https://raw.githubusercontent.com/goaver/api-integration/master/images/aver_icon.png',
+  favicon: './img/aver_icon.png',
   organizationName: 'goaver', // Usually your GitHub org/user name.
   projectName: 'goaver.github.io', // Usually your repo name.
   themeConfig: {
@@ -11,7 +11,7 @@ module.exports = {
       title: '',
       logo: {
         alt: 'Aver Logo',
-        src: 'https://raw.githubusercontent.com/goaver/api-integration/master/images/aver_logo.png'
+        src: './img/aver_logo.png'
       },
       links: [
         {
