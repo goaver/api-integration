@@ -22,6 +22,8 @@ Creates a new check enrollment
 
 - <b>skipPersonalAccessCode (optional)</b> - This option will skip the enrollment step of asking the user to create their own personal access code to access their enrollment.  NOTE: When this option is used, if the user is removed from the enrollment process for any reason (session timeout, error, exit, etc) they will be unable to re-access the enrollment without being provided a new access url from the API caller.  See <a href="/docs/check#post-apicheckidaccesslink">Check Access Link</a> for more information on generating a new link.
 
+- <b>overrideThirdPartyIdentifier (optional)</b> - By default, only one check may be created per third party identifier.  When set, this will allow multiple checks to be created with the given third party identifier.
+
 ##### Example Request
 ```
 {
@@ -91,11 +93,12 @@ Gets the check information and status for a check using the Aver checkId returne
 ```
 
 ---
-### GET /api/check/getbythirdpartyidentifier/{id}
+### GET /api/check/getbythirdpartyidentifier/{id}(?all=true)
 Gets the check information and status for a check from the third party identifier provided when creating the check
 
 #### Request Parameters
 - [Path] <b>id (required)</b> - The third party identifier provided during the check create call
+- [QueryString] <b>all (optional</b>) - By default, only the most recent check for the third party identifier will be returned.  To retrieve a list of all existing checks for the third party identifier, append ?all=true to the request url.
 
 #### Response Parameters
 - <b>id</b> - The unique identifier of the check

@@ -14,13 +14,13 @@ To securely access the Aver API, you will need to authenticate to create an auth
 5. Copy the "secret"
 
 <p>
-<img src="https://raw.githubusercontent.com/goaver/api-integration/master/images/create_api_key_1.jpg"></img>
+<img src="/img/create_api_key_1.jpg"></img>
 </p>
 
 6. View the key that was created and copy the "key"
 
 <p>
-<img src="https://raw.githubusercontent.com/goaver/api-integration/master/images/create_api_key_2.jpg"></img>
+<img src="/img/create_api_key_2.jpg"></img>
 </p>
 
 ### Using the Test API Key
