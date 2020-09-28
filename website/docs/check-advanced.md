@@ -19,17 +19,47 @@ Creates a new check enrollment overriding the Check Types and Supplemental Docum
 
 - <b>email (required)</b> - The e-mail address of the user the check is being created for that will be used to send access links to the user if necessary.
 
-- <b>language (optional)</b> - The default language to use for the check enrollment for the user (they can change the language during enrollment).  Options are "en"(English), "zh-Hans"(Chinese), "es" (Spanish), and "fr"(French).  Default is English if this is not provided. 
+- <b>language (optional)</b> - The default language to use for the check enrollment for the user (they can change the language during enrollment).  Default is English if this is not provided 
+
+  * Values:
+    * `en` - English
+    * `zh-Hans` - Chinese
+    * `es` - Spanish
+    * `fr` - French
 
 - <b>returnUrl (optional)</b> - The url to redirect to for the user once they have completed the check enrollment workflow.  This is generally used for inline workflows.  The status / complete page will be shown at the end of enrollment if this is not set.
 
 - <b>checkTypes (optional)</b> - The check types to be used for this check.  When set, this will override the Check Type defaults and Supplemental Document Types defined in Check Group Settings configuration
 
-- <b>supplementalDocumentTypes (optional)</b> - The supplemental document types required to be submitted with this check
+  * Values:
+    * `EmailVerification` - Email verification performed
+    * `DocumentVerification` - Identification document verification performed
+    * `PhotoVerification` - Liveness verification performed with facial recognition matching
+    * `AccreditedInvestor` - Accredited investor verification performed
+    * `Watchlist` - Text based watchlist search performed for individual
+    * `VisualWatchlist` - Facial match watchlist search performed for individual
+    * `RiskProfiling` - Risk profiling performed for individual
+    * `AddressVerification` - Address verification performed for individual
+
+
+- <b>supplementalDocumentTypes (optional)</b> - The supplemental document types required to be submitted with this check - NOTE: if omitted, the default will use the group settings.
+
+  * Values:
+    * `BankOrCreditCard` - Banking or credit card
+    * `TaxDocument` - Tax document
+    * `UtilityBill` - Utility bill
+    * `MedicalCard` - Medical card
+    * `AccreditedInvestor` - Accredited investor letter
+
 
 - <b>watchlistSearchCategories (optional)</b> The watchlist categories to be searched - NOTE: if omitted, the default will use the group settings.
 
-- <b>watchlistRecheckInterval (optional)</b> - This will set the watchlist search that is created and searched as a result of this check as a recurring check to be performed automatically in the future at the specified interval.  Valid values are 7 (weekly) and 30 (monthly).  NOTE: This only applies if you are overriding the default check types and include Watchlist Search, otherwise group settings will be used to set the recurring watchlist search interval.
+  - See [Watchlist Search](/docs/watchlist#post-apiwatchlistsearch "Watchlist Search") for values
+
+
+- <b>watchlistRecheckInterval (optional)</b> - This will set the watchlist search that is created and searched as a result of this check as a recurring check to be performed automatically in the future at the specified interval.  NOTE: This only applies if you are overriding the default check types and include Watchlist Search, otherwise group settings will be used to set the recurring watchlist search interval.
+
+  - See [Watchlist Search](/docs/watchlist#post-apiwatchlistsearch "Watchlist Search") for values
 
 - <b>skipPersonalAccessCode (optional)</b> - This option will skip the enrollment step of asking the user to create their own personal access code to access their enrollment.  NOTE: When this option is used, if the user is removed from the enrollment process for any reason (session timeout, error, exit, etc) they will be unable to re-access the enrollment without being provided a new access url from the API caller.  See <a href="/docs/check#post-apicheckidaccesslink">Check Access Link</a> for more information on generating a new link.
 
@@ -105,10 +135,20 @@ Creates a new check enrollment overriding the Check Types and Supplemental Docum
 - <b>middleName (optional)</b> - individual's middle name
 - <b>lastName (required)</b> - individual's last name (surname)
 - <b>suffix (optional)</b> - individual's name suffix
-- <b>gender (optional)</b> - individual's gender - "M" (male), "F" (female), "U" (unknown / not provided)
+- <b>gender (optional)</b> - individual's gender
+
+    * Values:
+      * `M` - Male
+      * `F` - Female
+      * `U` - Unknown / Other / Not Provided
+
+
 - <b>dateOfBirth (optional - depends on check types)</b> - individual's date of birth in MM/DD/YYYY format
 - <b>stateOrProvince (optional - depends on check types)</b> - individual's state or province of residence
-- <b>country (optional - depends on check types)</b> - individuals country of residence (use ISO 3166 2-digit alpha country code, see https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes)
+- <b>country (optional - depends on check types)</b> - individuals country of residence (use ISO 3166 2-digit alpha country code
+
+  - See [ISO 3166 Country Codes](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes "ISO 3166 Country Codes")
+
 - <b>streetAddress1 (optional - depends on check types)</b> - individual's residence street address
 - <b>streetAddress2 (optional)</b> - individual's residence street address
 - <b>city (optional - depends on check types)</b> - individual's city of residence
@@ -141,8 +181,21 @@ Creates a new check enrollment overriding the Check Types and Supplemental Docum
 #### Request Parameters
 - [Path] <b>id (required)</b> - The unique identifier returned from the check create call
 - <b>forceCommit (optional)</b> - if "true" this will ignore any errors in document processing (facial recognition, OCR, etc) and may result in a delayed result requiring additional processing or a failed check result if the image is unreadable.
-- <b>docType (required)</b> - the type of identification document being provided - valid types are "NADriverLicense" (US or Canada only), "PassportImage" (passport for any country), or "GenericIdentificationCardImage" (any other identification documents).
-- <b>side (required)</b> - the side of the document being provided "Front","Back" 
+- <b>docType (required)</b> - the type of identification document being provided
+
+  * Values:
+    * `NADriverLicense` - North America Driver License (United States or Canada), 
+    * `PassportImage` - Passport for any country
+    * `GenericIdentificationCardImage` - All other identification documents
+
+
+- <b>side (required)</b> - the side of the document being provided
+
+  * Values:
+    * `Front`
+    * `Back`
+
+
 - <b>fileName (required)</b> - the filename of the image being uploaded
 - <b>fileContent (required)</b> - Base64 image (JPG or PNG) Data URL of image containing the specified side of the document.  Information about Data URL can be found <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs">here</a>
 
@@ -159,7 +212,7 @@ Creates a new check enrollment overriding the Check Types and Supplemental Docum
 
 ---
 ### POST /api/check/{id}/photodocument
-<p>Use this endpoint to upload the photo / selfie document to be used in the check.  This is only required for Photo Verification and Visual Watchlist check types that were specified at check create or at the group level.</p>
+<p>Use this endpoint to upload the photo / selfie document to be used in the check for liveness verification.  This is only required for Photo Verification and Visual Watchlist check types that were specified at check create or at the group level.</p>
 
 #### Request Parameters
 - [Path] <b>id (required)</b> - The unique identifier returned from the check create call
@@ -178,7 +231,15 @@ Creates a new check enrollment overriding the Check Types and Supplemental Docum
 
 ---
 ### POST /api/check/{id}/supplementaldocument
-<p>Use this endpoint to upload one or more supplemental documents to be used / included in the check.  This is only required for Accredited Investor check type or if any Supplemental Document Types were provided at the time the check was created or at the group level.  Valid values are "AccreditedInvestor","BankOrCreditCard","UtilityBill","MedicalCard", and "TaxDocument"</p>
+<p>Use this endpoint to upload one or more supplemental documents to be used / included in the check.  This is only required for Accredited Investor check type or if any Supplemental Document Types were provided at the time the check was created or at the group level.</p>
+
+  * Values:
+    * `BankOrCreditCard` - Banking or credit card
+    * `TaxDocument` - Tax document
+    * `UtilityBill` - Utility bill
+    * `MedicalCard` - Medical card
+    * `AccreditedInvestor` - Accredited investor letter
+
 
 ##### Example Request
 ```

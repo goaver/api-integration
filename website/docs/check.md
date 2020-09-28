@@ -16,7 +16,13 @@ Creates a new check enrollment
 
 - <b>email (required)</b> - The e-mail address of the user the check is being created for that will be used to send access links to the user if necessary.
 
-- <b>language (optional)</b> - The default language to use for the check enrollment for the user (they can change the language during enrollment).  Options are "en"(English), "zh-Hans"(Chinese), "es" (Spanish), and "fr"(French).  Default is English if this is not provided. 
+- <b>language (optional)</b> - The default language to use for the check enrollment for the user (they can change the language during enrollment). Default is English if this is not provided and users have the option to switch language via the user interface during enrollment.
+
+  * Values:
+    * `en` - English
+    * `zh-Hans` - Chinese
+    * `es` - Spanish
+    * `fr` - French
 
 - <b>returnUrl (optional)</b> - The url to redirect to for the user once they have completed the check enrollment workflow.  This is generally used for inline workflows.  The status / complete page will be shown at the end of enrollment if this is not set.
 
@@ -65,11 +71,15 @@ Gets the check information and status for a check using the Aver checkId returne
 
 - <b>groupId</b> - The group the check is in
 
+- <b>thirdPartyIdentifier</b> - The third party identifier for the check
+
 - <b>status</b> - The status of the check
 
-- <b>statusReason</b> - If the check was rejected, detail as to the reason (unreadable documents, underage, etc)
+  - See [Get Check Results](/docs/check#get-apicheckidresults "Get Check Results") for values
 
-- <b>checkTypes</b> - The list of check types / verifications performed as part of the check 
+- <b>checkTypes</b> - The list of check types / verifications performed as part of the check (inherited from the group configuration)
+
+  - See [Get Check Results](/docs/check#get-apicheckidresults "Get Check Results") for values
 
 ##### Example Response
 ```
@@ -101,38 +111,7 @@ Gets the check information and status for a check from the third party identifie
 - [QueryString] <b>all (optional</b>) - By default, only the most recent check for the third party identifier will be returned.  To retrieve a list of all existing checks for the third party identifier, append ?all=true to the request url.
 
 #### Response Parameters
-- <b>id</b> - The unique identifier of the check
-  
-- <b>organizationId</b> - The parent organization of the check
-
-- <b>groupId</b> - The group the check is in
-
-- <b>status</b> - The status of the check
-
-- <b>statusReason</b> - If the check was rejected, detail as to the reason (unreadable documents, underage, etc)
-
-- <b>checkTypes</b> - The list of check types / verifications performed as part of the check 
-
-##### Example Response
-```
-{
-"id": "51771bd7-a5b5-4ab9-913c-f1dc15429f11",
-"organiationId": "afa22173-6a46-4761-8308-27ad4b211c40",
-"groupId": "2d1162b5-d6a8-4936-be84-39ec873b7a60",
-"thirdPartyIdentifier": "123456",
-"status": "Created",
-"checkTypes": [
-  "DocumentVerification",
-  "EmailVerification",
-  "PhotoVerification",
-  "AccreditedInvestor",
-  "Watchlist",
-  "VisualWatchlist",
-  "RiskProfiling",
-  "AddressVerification"
-]
-}
-```
+- See [Get Check by Id](/docs/check/#get-apicheckid "Get Check by Id")
 
 ---
 ### GET /api/check/{id}/results
@@ -148,13 +127,52 @@ Gets the check information and status for a check including all results (if the 
 
 - <b>groupId</b> - The group the check is in
 
+- <b>thirdPartyIdentifier</b> - The third party identifier for the check
+
 - <b>status</b> - The status of the check
 
-- <b>checkTypes</b> - The list of check types / verifications performed as part of the check
+  * Values:
+    * `Completed` - The check was able to be completed successfully
+    * `Rejected` - The check could not be completed due to invalid or missing data
 
-- <b>checkResults</b> - The result of the requested checks
+
+- <b>statusReason</b> - If the check was rejected, detail as to the reason
+
+  * Values:
+		* `MissingDocuments` - Required documents were not provided
+		* `UnreadableDocumentsOrMissingVerificationInformation` - Identification documents were unreadable or did not contain the required information
+		* `ExpiredDocuments` - Identification documents expired
+		* `SuspiciousDocumentsOrImages` - Identification documents were suspected to be stolen or fraudulent
+		* `FacialVerificationFailed` - Liveness facial verification failed
+		* `UnderageApplicant` - Individual is under the age of 18
+
+
+- <b>checkTypes</b> - The list of check types / verifications performed as part of the check (inherited from the group configuration)
+
+  * Values:
+    * `EmailVerification` - Email verification performed
+    * `DocumentVerification` - Identification document verification performed
+    * `PhotoVerification` - Liveness verification performed with facial recognition matching
+    * `AccreditedInvestor` - Accredited investor verification performed
+    * `Watchlist` - Text based watchlist search performed for individual
+    * `VisualWatchlist` - Facial match watchlist search performed for individual
+    * `RiskProfiling` - Risk profiling performed for individual
+    * `AddressVerification` - Address verification performed for individual
+
 
 - <b>warnings</b> - The warnings found based on the configured warnings in group settings
+
+  * Values:
+    * `Country` - Individual is from a restricted country
+    * `State` - Individual is from a restricted state or province
+    * `IPVpnTor` - Enrollment completed over VPN or TOR
+    * `Address` - Address invalid or suspected of fraud
+    * `EmailAddress` - Email address is invalid or suspect
+    * `WatchlistHitsFound` - Watchlist results found for individual
+    * `AdverseMediaFound` - Adverse media results found for individual
+
+
+- <b>checkResults</b> - The result of the requested checks (see example below for complete data model)
 
 ##### Example Response
 ```
@@ -192,7 +210,7 @@ Gets the check information and status for a check including all results (if the 
       "country": "US"
     },
     "identificationDocument": {
-      "type": "USALicenseIdCard",
+      "type": "NADriverLicense",
       "frontId": "03f3795877c743c3807259e269ee1152",
       "backId": "6eae803539074522a720e15c2c392eb8",
       "expirationDate": "12/03/2020",
