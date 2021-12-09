@@ -11,6 +11,7 @@ This resource provides access to the watchlist search and adverse media search f
 
 #### Request Parameters
 - <b>groupId (required)</b> - The check group the search is in
+- <b>checkId (optional)</b> - The check to associate this watchlist search to (if post-check completion)
 - <b>firstName (optional *)</b> - The individual's first name
 - <b>middleName (optional )</b> - The individual's middle name
 - <b>lastName  (optional *)</b> - The individual's last name
