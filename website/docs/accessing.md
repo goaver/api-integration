@@ -10,7 +10,7 @@ To securely access the Aver API, you will need to authenticate to create an auth
 1. Login to the Aver Portal
 2. Go to Settings under your organization in the left nav bar
 3. Find the integrations tab and select API Keys
-4. Add an API key with "Portal User" scope. To test the API with dummy data, use the "Test API Key"
+4. Add an API key with "Portal User" scope.
 5. Copy the "secret"
 
 <p>
@@ -25,7 +25,7 @@ To securely access the Aver API, you will need to authenticate to create an auth
 
 ### Using the Test API Key
 <p>
-The Test API Key is available to help develop against the Aver API. It will authenticate the same way as a the "Portal User" key. Using the endpoints listed in the rest of the documentation, will return dummy data. The "Test API Key" does not use any check or watchlist credits.
+You can use a test API key to help develop the basic intgerface to the Aver API without incurring cost. It will authenticate the same way as a the "Portal User" key, just simply choose "Test API Key" in step 4 above.  You can call all of the API endpoints using this key and receive a payload of dummy data without consuming credits.
 </p>
 
 ### 2. Retrieve the Bearer Token
