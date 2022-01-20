@@ -27,11 +27,18 @@
 h1 {
   font-size: 2em !important;
   margin-top: 0px !important;
-  margin-bottom: 10px !important;
+  margin-bottom: 4px !important;
+  color: #2554a0;
 }
 
 h2 {
+  font-size: 1.7em !important;
   margin-top: 10px !important;
+  margin-bottom: 4px !important;
+}
+
+h3 {
+  font-size: 1.3em !important;
 }
 
 h3, h4 {

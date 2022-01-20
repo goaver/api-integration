@@ -6,8 +6,17 @@ sidebar_label: Watchlist Search
 
 This resource provides access to the watchlist search and adverse media search functionality.
 
+
+## Create Search Endpoints
+
+---
+
+<b>NOTE:</b> If a check is configured to perform a watchlist search as part of the check type, the search will be performed automatically.  These endpoints are only necessary to perform watchlist searches without a corresponding verification check.
+<p></p>
+
 ### POST api/watchlist/search
-<p>Performs a watchlist search with the specified search criteria</p>
+
+Performs a watchlist search with the specified search criteria
 
 #### Request Parameters
 - <b>groupId (required)</b> - The check group the search is in
@@ -70,7 +79,9 @@ This resource provides access to the watchlist search and adverse media search f
 }
 ```
 
+## Retreive Search Endpoints
 ---
+
 ### GET api/watchlist/{id}
 <p>Retrieves the search and status information for the specified watchlist search</p>
 
@@ -132,6 +143,9 @@ Retrieves the watchlist search that was created as the result of a check enrollm
 
 #### Response Parameters
 - See [Get Watchlist Search by Id](/docs/watchlist#get-apiwatchlistid "Get Watchlist Search by Id")
+
+
+## Retreive Results Endpoints
 
 ---
 ### GET api/watchlist/{id}/results

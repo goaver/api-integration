@@ -35,27 +35,27 @@ Creates a new check enrollment overriding the Check Types and Supplemental Docum
     * `EmailVerification` - Email verification performed
     * `DocumentVerification` - Identification document verification performed
     * `PhotoVerification` - Liveness verification performed with facial recognition matching
-    * `AccreditedInvestor` - Accredited investor verification performed
     * `Watchlist` - Text based watchlist search performed for individual
     * `VisualWatchlist` - Facial match watchlist search performed for individual
     * `RiskProfiling` - Risk profiling performed for individual
     * `AddressVerification` - Address verification performed for individual
+    * `PhoneVerification` - Phone number verification performed for individual
+    * `AccreditedInvestor` - Accredited investor verification performed
+    * `CovidVaccinationVerification` - Covid Vaccination Verification
 
 
-- <b>supplementalDocumentTypes (optional)</b> - The supplemental document types required to be submitted with this check - NOTE: if omitted, the default will use the group settings.
+- <b>supplementalDocumentTypes (optional)</b> - The supplemental document types required to be submitted with this check - NOTE: if omitted, the default will use the check group settings.
 
   * Values:
     * `BankOrCreditCard` - Banking or credit card
     * `TaxDocument` - Tax document
     * `UtilityBill` - Utility bill
     * `MedicalCard` - Medical card
-    * `AccreditedInvestor` - Accredited investor letter
 
 
-- <b>watchlistSearchCategories (optional)</b> The watchlist categories to be searched - NOTE: if omitted, the default will use the group settings.
+- <b>watchlistSearchCategories (optional)</b> The watchlist categories to be searched - NOTE: if omitted, the default will use the check group settings.
 
   - See [Watchlist Search](/docs/watchlist#post-apiwatchlistsearch "Watchlist Search") for values
-
 
 - <b>watchlistRecheckInterval (optional)</b> - This will set the watchlist search that is created and searched as a result of this check as a recurring check to be performed automatically in the future at the specified interval.  NOTE: This only applies if you are overriding the default check types and include Watchlist Search, otherwise group settings will be used to set the recurring watchlist search interval.
 
