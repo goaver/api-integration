@@ -30,16 +30,15 @@ Performs a watchlist search with the specified search criteria
 - <b>fileName (required if fileContent is provided)</b> - The filename for the file content provided for the Visual Watchlist search
 - <b>categories (optional)</b> The watchlist categories to be searched, if omitted the default is to search based on the group settings.
 
-  * Values:
-      * `Criminal` - Criminal related watchlsits
-      * `Terrorism` - International terrorism watchlists
-      * `Financial` - Financial crimes watchlists
-      * `FinancialNotices` - Financial notice watchlists
-      * `BorrowerDefaults` - Borrower default watchlists
-      * `Political` - Politically exposed persons and related watchlists
-      * `Medical` - Medical license revocation and related watchlists
-      * `Sexual` - Sexual offense related watchlists
-      * `Gambling` - Gambling related offenses and restriction watchlists
+    * `Criminal` - Criminal related watchlsits
+    * `Terrorism` - International terrorism watchlists
+    * `Financial` - Financial crimes watchlists
+    * `FinancialNotices` - Financial notice watchlists
+    * `BorrowerDefaults` - Borrower default watchlists
+    * `Political` - Politically exposed persons and related watchlists
+    * `Medical` - Medical license revocation and related watchlists
+    * `Sexual` - Sexual offense related watchlists
+    * `Gambling` - Gambling related offenses and restriction watchlists
 
 <b>*NOTE:</b> Either firstName + lastName or businessName must be provided at a minimum.
 
@@ -164,28 +163,25 @@ These endpoints are used to retrieve the results of completed watchlist searches
 - <b>checkId</b> - The associated check that created the watchlist search (if applicable)
 - <b>status</b> - The status of the search
 
-  * Values:
-    * `Completed` - Search completed successfully
-    * `Failed` - Search failed due to missing or invalid search criteria
-    * `Error` - Search could not be completed due to unknown error
+  * `Completed` - Search completed successfully
+  * `Failed` - Search failed due to missing or invalid search criteria
+  * `Error` - Search could not be completed due to unknown error
 
 
 - <b>searchDate</b> - The UTC date / time of the search
 - <b>searchType</b> - The type of search
 
-  * Values:
-    * `Text` - Text watchlists
-    * `TextAndVisual` - Text and Facial Match watchlists
+  * `Text` - Text watchlists
+  * `TextAndVisual` - Text and Facial Match watchlists
 
 
 - <b>recheckInterval</b> - The auto-recurring search interval for this search to be performed (days)
 
-  * Values:
-    * `0` - None
-    * `1` - Daily
-    * `7` - Weekly
-    * `30` - Monthly
-    * `90` - Quarterly
+  * `0` - None
+  * `1` - Daily
+  * `7` - Weekly
+  * `30` - Monthly
+  * `90` - Quarterly
 
 
 - <b>lastRecheckDate</b> - The UTC date / time of the last recurring search that was done based on this search

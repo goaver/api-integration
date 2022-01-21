@@ -227,10 +227,15 @@ Retrieve the enhanced liveness capture instruction for the check
 
 #### Request Parameters
 - [Path] <b>id (required)</b> - The third party identifier provided during the check create call
-- [QueryString] <b>all (optional</b>) - By default, only the most recent check for the third party identifier will be returned.  To retrieve a list of all existing checks for the third party identifier, append ?all=true to the request url.
 
 #### Response Parameters
-- See [Get Check by Id](/docs/check/#get-apicheckid "Get Check by Id")
+- <b>instruction</b> - The photo capture instruction
+- Values:
+  * `None`
+  * `LookUp`
+  * `LookDown`
+  * `LookRight`
+  * `LookLeft`
 
 ---
 ### POST /api/check/{id}/supplementaldocument
@@ -329,7 +334,7 @@ Search for checks by criteria
 - thirdPartyIdentifier
 
 #### Response Parameters
-- See [Get Check by Id](/docs/check/#get-apicheckid "Get Check by Id")
+- Check[] See [Get Check by Id](/docs/check/#get-apicheckid "Get Check by Id")
 
 ---
 
@@ -352,40 +357,42 @@ Gets the check information and status for a check including all results (if the 
 
 - <b>thirdPartyIdentifier</b> - The third party identifier for the check
 
-- <b>status</b> - The status of the check
+- <b>status</b> - The status of the check (statuses without a * can be ignored and are for informational purposes only)
 
-  * Values:
-    * `Completed` - The check was able to be completed successfully
-    * `Rejected` - The check could not be completed due to invalid or missing data
+  * `Created` - The check has been created but the user has not accessed enrollment or added any data
+  * `AwaitingUser` - The user has accessed the enrollment or has begun submitting data
+  * `AwaitingAutomation` - The enrollment has been submitted and queued for preprocessing
+  * `AwaitingReview` - The enrollment has been submitted and is queued for processing
+  * `InReview` - The enrollment is actively being reviewed or is in a secondary review
+  * `Rejected`* - The check could not be completed due to invalid or missing data
+  * `Completed`* - The check was able to be completed successfully and results can be retrieved
 
 
 - <b>statusReason</b> - If the check was rejected, detail as to the reason
 
-  * Values:
-		* `MissingDocuments` - Required documents were not provided
-		* `UnreadableDocumentsOrMissingVerificationInformation` - Identification documents were unreadable or did not contain the required information
-		* `ExpiredDocuments` - Identification documents expired
-		* `SuspiciousDocumentsOrImages` - Identification documents were suspected to be stolen or fraudulent
-		* `FacialVerificationFailed` - Liveness facial verification failed
+  * `MissingDocuments` - Required documents were not provided
+  * `UnreadableDocumentsOrMissingVerificationInformation` - Identification documents were unreadable or did not contain the required information
+  * `ExpiredDocuments` - Identification documents expired
+  * `SuspiciousDocumentsOrImages` - Identification documents were suspected to be stolen or fraudulent
+  * `FacialVerificationFailed` - Liveness facial verification failed
+
 
 - <b>checkTypes</b> - The list of check types / verifications performed as part of the check (inherited from the group configuration)
 
-  * Values:
-    * `EmailVerification` - Email verification performed
-    * `DocumentVerification` - Identification document verification performed
-    * `PhotoVerification` - Liveness verification performed with facial recognition matching
-    * `Phone Verification` - Phone number verification performed
-    * `AccreditedInvestor` - Accredited investor verification performed
-    * `Watchlist` - Text based watchlist search performed for individual
-    * `VisualWatchlist` - Facial match watchlist search performed for individual
-    * `RiskProfiling` - Risk profiling performed for individual
-    * `AddressVerification` - Address verification performed for individual
-    * `CovidVaccinationVerification` - Covid vaccination verification performed
+  * `DocumentVerification` - Identification document verification performed
+  * `EmailVerification` - Email verification performed
+  * `RiskProfiling` - Risk profiling (IP Address, device, etc) performed for individual
+  * `AddressVerification` - Address verification performed for individual
+  * `PhotoVerification` - Liveness verification performed with facial recognition matching
+  * `PhoneVerification` - Phone number verification performed
+  * `Watchlist` - Text based watchlist search performed for individual
+  * `VisualWatchlist` - Facial match watchlist search performed for individual
+  * `AccreditedInvestor` - Accredited investor verification performed
+  * `CovidVaccinationVerification` - Covid vaccination verification performed
 
 
 - <b>warnings</b> - The warnings found based on the configured warnings in group settings
 
-  * Values:
     * `Age` - Individual is under the age of 18
     * `Country` - Individual is from a restricted country
     * `State` - Individual is from a restricted state or province

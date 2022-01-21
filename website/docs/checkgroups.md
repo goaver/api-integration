@@ -4,8 +4,6 @@ title: Check Groups
 sidebar_label: Check Groups
 ---
 
----
-
 <p>
 A Check Group is an organizational unit for a collection of Verification Checks and / or Watchlist Searches that also provide the default configuration settings for any entities created within the group. Check groups are created and configured via the Aver portal.
 </p>
@@ -13,7 +11,6 @@ A Check Group is an organizational unit for a collection of Verification Checks 
 <b>It is important to be aware that check groups have an entity limit of 1M Verification Checks and 1M Watchlist Searches</b>.  Monitoring the number of entities created within a given check group is important to ensure you are not close to exceeding the capacity of the group.  Best practice for high-volume implementations would be to segment your checks into groups or to create new check groups and roll forward at a known interval (ie: yearly), depending on volume.  In most cases this is a non-issue, however for high-volume integrations it is important to be aware of.
 </p>
 
----
 
 ## Check Type Settings
 <p>
@@ -40,7 +37,6 @@ Check type settings determine what check types, liveness requirements, and suppl
 - <b>Bank or Credit Card</b>
 - <b>Medical Card</b>
 
----
 
 ## Check Watchlist Settings
 <p>
@@ -66,7 +62,6 @@ When enabled,the search will also perform a web search to find published article
 ### Watchlist Search Interval
 Setting a watchlist search interval will automatically re-run the same watchlist search criteria at scheduled intervals (weekly, monthly, quarterly, etc)
 
----
 
 ## Check Warning Settings 
 <p>
@@ -100,8 +95,6 @@ The check warnings configure the criteria in which to display a warning if the v
 - <b>Restricted Countries</b>
 - <b>Restricted US States</b>
 - <b>Restricted Canadian Provinces</b>
-
----
 
 ## Overriding Check Group Settings
 <p>
