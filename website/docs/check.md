@@ -4,8 +4,7 @@ title: Verification Check
 sidebar_label: Verification Check
 ---
 
-Summary goes here...
-
+A Verification Check is the process of verifying the identification documentation, personal information, and liveness of an applicant.  In the industry, this process is generally referred to as KYC (Know Your Customer).  Aver uses sophisticated technology to process the information provided and report back with findings about all facets of an individual's identity.  All of the functionality provided in the Aver hosted enrollment is available via the API using the Verification Check endpoints.
 
 ## Create Check Endpoints
 The create check endpoints are available at all subscription levels.  These endpoints are used to create a check and allow for either redirection to hosted enrollment (basic) or complete check creation with full data integration (advanced).
@@ -381,7 +380,7 @@ Gets the check information and status for a check including all results (if the 
 
   * `DocumentVerification` - Identification document verification performed
   * `EmailVerification` - Email verification performed
-  * `RiskProfiling` - Risk profiling (IP Address, device, etc) performed for individual
+  * `RiskProfiling` - Risk profiling (access IP / location, email, facial match) performed for individual
   * `AddressVerification` - Address verification performed for individual
   * `PhotoVerification` - Liveness verification performed with facial recognition matching
   * `PhoneVerification` - Phone number verification performed
@@ -393,14 +392,19 @@ Gets the check information and status for a check including all results (if the 
 
 - <b>warnings</b> - The warnings found based on the configured warnings in group settings
 
-    * `Age` - Individual is under the age of 18
-    * `Country` - Individual is from a restricted country
-    * `State` - Individual is from a restricted state or province
-    * `IPVpnTor` - Enrollment completed over VPN or TOR
-    * `Address` - Address invalid or suspected of fraud
-    * `EmailAddress` - Email address is invalid or suspect
-    * `WatchlistHitsFound` - Watchlist results found for individual
-    * `AdverseMediaFound` - Adverse media results found for individual
+  * `Age` - Individual is under the age of 18
+  * `Country` - Individual is from a restricted country
+  * `State` - Individual is from a restricted state or province
+  * `IPVpnTor` - Enrollment completed over VPN or TOR
+  * `Address` - Address invalid or suspected of fraud
+  * `EmailAddress` - Email address is invalid or suspect
+  * `WatchlistHitsFound` - Watchlist results found for individual
+  * `AdverseMediaFound` - Adverse media results found for individual
+  * `SameEmailFound` - the provided e-mail address was provided in a previous verification
+  * `SameIdDocumentFound` - the same identification document was provided in a previous verification
+  * `SameNameFound` - the same name was provided in a previous verification
+  * `PhoneInvalid` - the phone number provided is invalid
+  * `PhonePrepaidOrVoip` - the phone number provided is prepaid, disposable, or VOIP
 
 
 - <b>checkResults</b> - The result of the requested checks (see example below for complete data model)

@@ -4,61 +4,61 @@ title: Reading Watchlist Results
 sidebar_label: Reading Watchlist Results
 ---
 
+Reading watchlist search and adverse media search results from Aver is simple...  Although more detail is provided (see data models), these are the core fields that are used to drive business decisions.  For details on all available fields and possible values, refer to <a href="/docs/watchlist#get-apiwatchlistidresults">Watchlist Search Results</a>.
 
 
+## Watchlist Search Results
+If results are found, an array of watchlistResults are returned.  Given the varying fidelity of watchlist sources, it is highly recommended that any search yielding a watchlist search hit be reviewed by the business to determine the likelihood the individual matched is the individual in question. 
 
-```
-{
-  "id": "f4d8f910-8a7b-42f0-ba40-2b2c17cb9118",
-  "groupId": "2d1162b5-d6a8-4936-be84-39ec873b7a60",
-  "organizationId": "afa22173-6a46-4761-8308-27ad4b211c40",
-  "checkId": "51771bd7-a5b5-4ab9-913c-f1dc15429f11",
-  "status": "Completed",
-  "searchDate": "10/4/2019 5:32:31 PM",
-  "searchType": "Text",
-  "recheckInterval": 0,
-  "lastRecheckDate": "",
-  "searchCriteria": 
-      "firstName": "Some",
-      "middleName": "Random",
-      "lastName": "User",
-      "businessName": "They Work Here Corp",
-      "country": "USA",
-      "stateProvince": "CA"
-  },
-  "watchlistResults": [
-    {
-      "matchConfidence": 0.4,
-      "watchlistName": "alabamaExcludedProviderList",
-      "matchName": null,
-      "firstNameMatch": "Match",
-      "lastNameMatch": "Match",
-      "middleNameMatch": "Unavailable",
-      "businessNameMatch": "Unavailable",
-      "stateMatch": "Unavailable",
-      "countryMatch": "Unavailable",
-      "additionalInformation": {
-        "supensionEffectiveDate": "02/23/13",
-        "suspensionInitiatedBy": "MLC"
-      }
-    }
-  ],
-  "adverseMediaResults": [
-    {
-      "datePublished": "2019-12-12T15:36:00Z",
-      "title": null,
-      "description": "Some Random, a former Pro Bowl running back, is among several former NFL players who are facing federal charges in an alleged scheme to defraud the league's health care program for retired ...",
-      "name": "Some Random among retired NFL players facing federal fraud charges",
-      "source": "Fox News",
-      "url": "https://www.foxnews.com/sports/some-random-retired-nfl-players-facing-federal-fraud-charges",
-      "matchScore": 0.4,
-      "businessMatchName": "Unavailable",
-      "firstNameMatch": "Match",
-      "middleNameMatch": "Unavailable",
-      "lastNameMatch": "Match",
-      "stateMatch": "NoMatch",
-      "countryMatch": "NoMatch"
-    }
-  ]
-}
-```
+### Search Results Match Fields
+The following properties in each result reflect the confidence of the match and the list in which a match was found.  
+
+- <b>Match Confidence</b> - the match confidence %
+- <b>Watchlist Name</b> - the watchlist name that the hit was found on
+- <b>Additional Information</b> - any supplemental information provided by the list regarding the incident
+
+
+### Match Confidence Detail Fields
+The following fields are provided to add detail surrounding the match confidence:
+
+- <b>First Name Match</b> - first name match status
+- <b>Last Name Match</b> - last name match status
+- <b>Middle Name Match</b> - middle name match status
+- <b>Business Name Match</b> - business name match status
+- <b>State Match</b> - state match status
+- <b>Country Match</b> - country match status
+
+For each of these elements, the potential statuses are:
+
+- `Match` - The property was provided by both the watchlist and the search criteria and was matched
+- `NoMatch` - The property was provided by both the watchlist and the search criteria, but was not matched 
+- `Unavailable` - The property was not provided on the search criteria or was not available on the watchlist, so the property was unable to be matched due to omission.
+
+
+## Adverse Media Search Results
+If results are found, an array of adverseMediaResults are returned.  Given the varying fidelity of online sources, it is highly recommended that any search yielding an adverse media search hit be reviewed by the business to determine the likelihood the individual matched is the individual in question. 
+
+### Search Results Match Fields
+The following properties in each result reflect the confidence of the match and the list in which a match was found.  
+
+- <b>Match Score</b> - the match score %
+- <b>Name</b> - the name of the article found
+- <b>Description</b> - the long description of the article found
+- <b>Source</b> - the source / publisher
+- <b>Url</b> - the url of the publication
+
+### Match Score Detail Fields
+The following fields are provided to add detail surrounding the match score:
+
+- <b>First Name Match</b> - first name match status
+- <b>Last Name Match</b> - last name match status
+- <b>Middle Name Match</b> - middle name match status
+- <b>Business Name Match</b> - business name match status
+- <b>State Match</b> - state match status
+- <b>Country Match</b> - country match status
+
+For each of these elements, the potential statuses are:
+
+- `Match` - The property was found in the publication and the search criteria and was matched
+- `NoMatch` - The property was found in the publication and the search criteria, but was not matched 
+- `Unavailable` - The property was not provided on the search criteria or was not available in the publication, so the property was unable to be matched due to omission.

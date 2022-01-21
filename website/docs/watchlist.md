@@ -4,7 +4,7 @@ title: Watchlist Search
 sidebar_label: Watchlist Search
 ---
 
-Some sort of summary goes here...
+Watchlist Search and Adverse Media Search is the process of taking information about an individual and searching a wide range of curated sources to determine if the individual is on any watchlists or involved with wrongdoing.  In the industry, this is referred to as AML (Anti-Money Laundering) verification.
 
 
 ## Create Search Endpoints

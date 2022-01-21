@@ -4,17 +4,16 @@ title: Authentication
 sidebar_label: Authentication
 ---
 
-Summary goes here...
-
+In order to access the Aver API, calls must first authenticate using the API Key and Secret to retrieve a bearer token to be used for all subsequent calls.
 
 
 ## Create Token Endpoints
-<p>These endpoints provide authentication token generation and management.</p>
+<p>These endpoints provide authentication token generation and refresh.</p>
 
 
 ### GET /api/auth/token
 Creates / retrieves a bearer token to be used for authentication with all other API endpoints.
-<b>NOTE:</b> Auth tokens are only valid for 30 minutes.  You can generate a refreshed token using <a href="/docs/auth#refresh">/api/auth/refresh</a> 
+<b>NOTE:</b> Auth tokens are only valid for 30 minutes, so refresh is required before the expiration to prevent re-authenticating using your API key.  You can generate a refreshed token using <a href="/docs/auth#refresh">/api/auth/refresh</a>
 <p></p>
 
 #### Request Parameters
