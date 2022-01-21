@@ -6,7 +6,7 @@ sidebar_label: Accessing the API
 
 To securely access the Aver API, you will need to authenticate to create an authentication bearer token to grant access to API endpoints.  An inital basic authentication request is made to retrieve the bearer token, and that token is then used in all subsequent calls to authenticate the request.
 
-### 1. Create an API key
+## 1. Create an API key
 1. Login to the Aver Portal
 2. Go to Settings under your organization in the left nav bar
 3. Find the integrations tab and select API Keys
@@ -28,12 +28,12 @@ To securely access the Aver API, you will need to authenticate to create an auth
 You can use a test API key to help develop the basic intgerface to the Aver API without incurring cost. It will authenticate the same way as a the "Portal User" key, just simply choose "Test API Key" in step 4 above.  You can call all of the API endpoints using this key and receive a payload of dummy data without consuming credits.
 </p>
 
-### 2. Retrieve the Bearer Token
+## 2. Retrieve the Bearer Token
 
 To retrieve the authentication bearer token, a basic authentication request is made using the API key and secret to validate your organization and return a scoped bearer token to grant access to API resources. Additional details on basic authentication can be found at <a href="https://en.wikipedia.org/wiki/Basic_access_authentication">https://en.wikipedia.org/wiki/Basic_access_authentication</a> (see Client Side)
 
 
-#### Create a Basic Authentication request
+### Create a Basic Authentication request
 1. Concatenate [key]:[secret]
 2. Base64 encode the concatenated values 
 3. Include the Base64 encoded value in the Authorization header for Basic auth
@@ -43,12 +43,12 @@ To retrieve the authentication bearer token, a basic authentication request is m
 </p>
 
 
-#### Call the Authentication Endpoint
+### Call the Authentication Endpoint
 <p>
 Call the <a href="/docs/auth">Authentication</a> endpoint with your basic authentication header to return a token so you can call other API endpoints and take further action. The base API URL is <b>https://app.goaver.com/api</b>
 </p>
 
-### 3. Calling API Endpoints
+## 3. Calling API Endpoints
 <p>
 For any resource request, the endpoint will require the authorization header to be set as a bearer token with the token you generated in the previous step.
 </p>

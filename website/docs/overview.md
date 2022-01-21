@@ -4,6 +4,7 @@ title: Overview
 sidebar_label: Overview
 ---
 
+
 The Aver Identity Verification REST API allows developers to integrate and harness the power of Aver to verify user identity in all of their applications. Verify identification documents, perform international watchlist searches, and check adverse media, all in just a few lines of code.
 
 With a secure and easy-to-use API, integration with Aver couldn't be simpler. Regardless of your platform or language, access the Aver API using a standard REST API to take advantage of all Aver Verification features.

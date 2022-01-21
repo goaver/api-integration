@@ -4,10 +4,12 @@ title: Verification Check
 sidebar_label: Verification Check
 ---
 
-This resource provides the functioanlity of check creation, status retrieval, results retrieval, and access link generation.
+Summary goes here...
+
 
 ## Create Check Endpoints
----
+The create check endpoints are available at all subscription levels.  These endpoints are used to create a check and allow for either redirection to hosted enrollment (basic) or complete check creation with full data integration (advanced).
+
 
 ### POST /api/check/create
 Creates a new check enrollment
@@ -90,6 +92,12 @@ Re-generates a new one-time use access link for end users to access their hosted
 ```
 
 ---
+
+## Create Check Advanced Endpoints
+
+These advanced check creation endpoints are only available to subscriptions with the Advanced API feature.
+
+
 ### POST /api/check/{id}/personalinfo
 <p>Provide all the user information required by the check type(s)</p>
 
@@ -252,6 +260,7 @@ Retrieve the enhanced liveness capture instruction for the check
 - <b>fileContent (required)</b> - Base64 image (JPG or PNG) Data URL of the image containing page of the document to be uploaded.  Information about Data URL can be found <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs">here</a>
 
 ---
+
 ### GET /api/check/{id}/submit
 <p>After all the required data and images are uploaded for the required check types and supplemental document types, this endpoint is called to finalize and process the check.  If the check is able to be completed immediately, it will return the full results of the check, otherwise the status will be returned and the results can be retrieved after the check is completed asynchronously.  This will perform all validation required based on the specified check types defined as to what user information and documents need to be present - if any element is missing, an error will be returned reflecting the missing information.</p>
 
@@ -259,10 +268,12 @@ Retrieve the enhanced liveness capture instruction for the check
 - [Path] <b>id (required)</b> - The unique identifier returned from the check create call
 
 
+---
 
 ## Retrieve Check Endpoints
+These endpoints allow for the retrieval of created checks to retrieve status and check criteria
 
----
+
 ### GET /api/check/{id}
 Gets the check information and status for a check using the Aver checkId returned when creating the check<
 
@@ -320,11 +331,12 @@ Search for checks by criteria
 #### Response Parameters
 - See [Get Check by Id](/docs/check/#get-apicheckid "Get Check by Id")
 
-
+---
 
 ## Retrieve Results Endpoints
+These endpoints are used to retrieve the results for a completed check
 
----
+
 ### GET /api/check/{id}/results
 Gets the check information and status for a check including all results (if the status is Complete or Failed)
 
@@ -362,16 +374,19 @@ Gets the check information and status for a check including all results (if the 
     * `EmailVerification` - Email verification performed
     * `DocumentVerification` - Identification document verification performed
     * `PhotoVerification` - Liveness verification performed with facial recognition matching
+    * `Phone Verification` - Phone number verification performed
     * `AccreditedInvestor` - Accredited investor verification performed
     * `Watchlist` - Text based watchlist search performed for individual
     * `VisualWatchlist` - Facial match watchlist search performed for individual
     * `RiskProfiling` - Risk profiling performed for individual
     * `AddressVerification` - Address verification performed for individual
+    * `CovidVaccinationVerification` - Covid vaccination verification performed
 
 
 - <b>warnings</b> - The warnings found based on the configured warnings in group settings
 
   * Values:
+    * `Age` - Individual is under the age of 18
     * `Country` - Individual is from a restricted country
     * `State` - Individual is from a restricted state or province
     * `IPVpnTor` - Enrollment completed over VPN or TOR

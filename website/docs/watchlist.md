@@ -4,15 +4,14 @@ title: Watchlist Search
 sidebar_label: Watchlist Search
 ---
 
-This resource provides access to the watchlist search and adverse media search functionality.
+Some sort of summary goes here...
 
 
 ## Create Search Endpoints
-
----
-
+These endpoints are used to create a watchlist search and optionally an adverse media search with the given criteria.
 <b>NOTE:</b> If a check is configured to perform a watchlist search as part of the check type, the search will be performed automatically.  These endpoints are only necessary to perform watchlist searches without a corresponding verification check.
 <p></p>
+
 
 ### POST api/watchlist/search
 
@@ -27,7 +26,7 @@ Performs a watchlist search with the specified search criteria
 - <b>businessName (optional *)</b> - The business / organization name to search
 - <b>country (optional)</b> - The country for the individual or business
 - <b>stateOrProvince (optional)</b> - The state for the individual or business
-- <b>fileContent (optional)</b> - Base64 image (JPG or PNG) Data URL of the photo containing the individual's face.  When provided, this will perform Visual Watchlist search in addition to the Text Watchlist search (associated fees apply).  Information about Data URL can be found <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs">here</a>
+- <b>fileContent (optional)</b> - Base64 image (JPG or PNG) Data URL of the photo containing the individual's face.  When provided, this will perform Visual Watchlist search in addition to the Text Watchlist search (Advanced API subscription feature).  Information about Data URL can be found <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs">here</a>
 - <b>fileName (required if fileContent is provided)</b> - The filename for the file content provided for the Visual Watchlist search
 - <b>categories (optional)</b> The watchlist categories to be searched, if omitted the default is to search based on the group settings.
 
@@ -79,8 +78,11 @@ Performs a watchlist search with the specified search criteria
 }
 ```
 
-## Retreive Search Endpoints
 ---
+
+## Retreive Search Endpoints
+These endpoints are used to retrieve search status and criteria
+
 
 ### GET api/watchlist/{id}
 <p>Retrieves the search and status information for the specified watchlist search</p>
@@ -144,10 +146,11 @@ Retrieves the watchlist search that was created as the result of a check enrollm
 #### Response Parameters
 - See [Get Watchlist Search by Id](/docs/watchlist#get-apiwatchlistid "Get Watchlist Search by Id")
 
+---
 
 ## Retreive Results Endpoints
+These endpoints are used to retrieve the results of completed watchlist searches
 
----
 ### GET api/watchlist/{id}/results
 <p>Retrieves the results for a specified watchlist</p>
 
