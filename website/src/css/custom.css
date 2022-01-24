@@ -15,6 +15,7 @@
   --ifm-color-primary-lighter: #5b97cf;
   --ifm-color-primary-lightest: #6eb4f5;
   --ifm-code-font-size: 95%;
+  font-size: 14px;
 }
 
 .docusaurus-highlight-code-line {
@@ -27,19 +28,41 @@
 h1 {
   font-size: 2em !important;
   margin-top: 0px !important;
-  margin-bottom: 10px !important;
+  margin-bottom: 4px !important;
+}
+
+header > h1 {
+  margin-top: -14px !important;
 }
 
 h2 {
-  margin-top: 10px !important;
+  color: #2554a0;
+  font-size: 1.7em !important;
+  margin-top: 12px !important;
+  margin-bottom: 4px !important;
 }
 
-h3, h4 {
+h3 {
+  margin-top: 12px !important;
+  margin-bottom: 4px !important;
+  font-size: 1.3em !important;
+  text-decoration: underline !important;
+}
+
+h4 {
   margin-top: 6px !important;
+  margin-bottom: 4px !important;
+  font-size: 1.15em !important;
 }
 
 .button{
   border: 0px;
   background: #303846 !important;
   color: #FFFFFF !important;
+}
+
+.table-of-contents > li > a
+{
+  font-weight: bold;
+  color: #2554a0 !important;
 }

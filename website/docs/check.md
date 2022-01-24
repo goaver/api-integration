@@ -1,10 +1,14 @@
 ---
 id: check
-title: Verification Check (Simple)
-sidebar_label: Verification Check (Simple)
+title: Verification Check
+sidebar_label: Verification Check
 ---
 
-This resource provides the functioanlity of check creation, status retrieval, results retrieval, and access link generation.
+A Verification Check is the process of verifying the identification documentation, personal information, and liveness of an applicant.  In the industry, this process is generally referred to as KYC (Know Your Customer).  Aver uses sophisticated technology to process the information provided and report back with findings about all facets of an individual's identity.  All of the functionality provided in the Aver hosted enrollment is available via the API using the Verification Check endpoints.
+
+## Create Check Endpoints
+The create check endpoints are available at all subscription levels.  These endpoints are used to create a check and allow for either redirection to hosted enrollment (basic) or complete check creation with full data integration (advanced).
+
 
 ### POST /api/check/create
 Creates a new check enrollment
@@ -58,6 +62,222 @@ Creates a new check enrollment
 ```
 
 ---
+### POST /api/check/{id}/accesslink
+Re-generates a new one-time use access link for end users to access their hosted check enrollment if needed.
+
+#### Request Parameters
+- [Path] <b>id (required)</b> - The unique identifier for the check returned from the check create call
+
+- <b>language (optional)</b> - The default language to use for the check enrollment for the user (they can change the language during enrollment).  Options are "en"(English), "zh-Hans"(Chinese), and "fr"(French).  Default is English if this is not provided. 
+
+- <b>returnUrl (optional)</b> - The url to redirect to for the user once they have completed the check enrollment workflow.  This is generally used for inline workflows.  The status / complete page will be shown at the end of enrollment if this is not set.
+
+##### Example Request
+```
+{
+  "language":"en",
+  "returnUrl":"https://www.yoursite.com/page"
+}
+```
+
+#### Response Parameters
+- <b>url</b> - The url for the user to access their check enrollment if redirecting the user to use Aver hosted enrollment
+
+##### Example Response
+```
+{
+"url": "http://app.goaver.com/CheckEnrollment/51771bd7-a5b5-4ab9-913c-f1dc15429f11?accessCode=904ec9f005224cbdbe431709c285fb22&language=en&returnUrl=https%3a%2f%2fwww.yoursite.com%2fpage"
+}
+```
+
+---
+
+## Create Check Advanced Endpoints
+
+These advanced check creation endpoints are only available to subscriptions with the Advanced API feature.
+
+
+### POST /api/check/{id}/personalinfo
+<p>Provide all the user information required by the check type(s)</p>
+
+#### Request Parameters
+- [Path] <b>id (required)</b> - The unique identifier returned from the check create call
+- <b>ipAddress (optional - depends on check types)</b> - individual's IP address
+- <b>companyName (optional - depends on check types)</b> - individual's company name
+- <b>firstName (required)</b> - individual's first name (given name)
+- <b>middleName (optional)</b> - individual's middle name
+- <b>lastName (required)</b> - individual's last name (surname)
+- <b>suffix (optional)</b> - individual's name suffix
+- <b>gender (optional)</b> - individual's gender
+
+    * Values:
+      * `M` - Male
+      * `F` - Female
+      * `U` - Unknown / Other / Not Provided
+
+
+- <b>dateOfBirth (optional - depends on check types)</b> - individual's date of birth in MM/DD/YYYY format
+- <b>stateOrProvince (optional - depends on check types)</b> - individual's state or province of residence
+- <b>country (optional - depends on check types)</b> - individuals country of residence (use ISO 3166 2-digit alpha country code)
+
+  - See [ISO 3166 Country Codes](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes "ISO 3166 Country Codes")
+
+- <b>streetAddress1 (optional - depends on check types)</b> - individual's residence street address
+- <b>streetAddress2 (optional)</b> - individual's residence street address
+- <b>city (optional - depends on check types)</b> - individual's city of residence
+- <b>postalCode (optional - depends on check types)</b> - individual's residential postal code
+
+##### Example Request
+```
+{
+  "email":"someone@somewhere.com",
+  "ipAddress":"192.168.1.1",
+  "companyName":"Some Company",
+  "firstName":"Someone",
+  "middleName":null,
+  "lastName":"One",
+  "suffix":null,
+  "gender":"M",
+  "dateOfBirth":"12/03/1980",
+  "stateOrProvince":"California",
+  "country":"US",
+  "streetAddress1":"1234 Main St",
+  "city":"San Diego",
+  "postalCode":"22434"
+}
+```
+
+---
+### POST /api/check/{id}/phone
+<p>Provide the phone number to be validate (depdenent on check types)</p>
+
+#### Request Parameters
+- [Path] <b>id (required)</b> - The unique identifier returned from the check create call
+- <b>number</b> - individual's phone number
+- <b>country</b> - individuals phone number country (use ISO 3166 2-digit alpha country code)
+
+##### Example Request
+```
+{
+  "number":"8183511153",
+  "country":"US"
+}
+```
+
+---
+### POST /api/check/{id}/iddocument
+<p>Use this endpoint to upload the ID document to be used in the check.  This is only required for Document Verification and Photo Verification check types that were specified at check create or at the group level</p>
+
+#### Request Parameters
+- [Path] <b>id (required)</b> - The unique identifier returned from the check create call
+- <b>forceCommit (optional)</b> - if "true" this will ignore any errors in document processing (facial recognition, OCR, etc) and may result in a delayed result requiring additional processing or a failed check result if the image is unreadable.
+- <b>docType (required)</b> - the type of identification document being provided
+
+  * Values:
+    * `NADriverLicense` - North America Driver License (United States or Canada), 
+    * `PassportImage` - Passport for any country
+    * `GenericIdentificationCardImage` - All other identification documents
+
+
+- <b>side (required)</b> - the side of the document being provided
+
+  * Values:
+    * `Front`
+    * `Back`
+
+
+- <b>fileName (required)</b> - the filename of the image being uploaded
+- <b>fileContent (required)</b> - Base64 image (JPG or PNG) Data URL of image containing the specified side of the document.  Information about Data URL can be found <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs">here</a>
+
+##### Example Request
+```
+{
+  "forceCommit":false,
+  "docType":"USALicenseIdCard",
+  "side":"Front",
+  "fileName":"front.jpg",
+  "fileContent":"data:image/jpeg;base64,/9j/4AAQSkZAmY7PhCfv..."
+}
+```
+
+---
+### POST /api/check/{id}/photodocument
+<p>Use this endpoint to upload the photo / selfie document to be used in the check for liveness verification.  This is only required for Photo Verification and Visual Watchlist check types that were specified at check create or at the group level.</p>
+
+#### Request Parameters
+- [Path] <b>id (required)</b> - The unique identifier returned from the check create call
+- <b>forceCommit (optional)</b> - if "true" this will ignore any errors in document processing (facial recognition) and may result in a delayed result requiring additional processing or a failed check result if the image is unreadable.
+- <b>fileName (required)</b> - the filename of the image being uploaded
+- <b>fileContent (required)</b> - Base64 image (JPG or PNG) Data URL of the image containing the individual's face.  Information about Data URL can be found <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs">here</a>
+- <b>extended (optional)</b> - whether or not this selfie photo is the basic selfie photo or the extended liveness capture photo for the check (based on check settings none, one or both may be required)
+
+##### Example Request
+```
+{
+  "forceCommit":false,
+  "fileName":"selfie.jpg",
+  "fileContent":"data:image/jpeg;base64,/9j/4AAQSkZJRg..."
+}
+```
+
+---
+### GET api/check/{id}/photoinstruction
+Retrieve the enhanced liveness capture instruction for the check
+
+#### Request Parameters
+- [Path] <b>id (required)</b> - The third party identifier provided during the check create call
+
+#### Response Parameters
+- <b>instruction</b> - The photo capture instruction
+- Values:
+  * `None`
+  * `LookUp`
+  * `LookDown`
+  * `LookRight`
+  * `LookLeft`
+
+---
+### POST /api/check/{id}/supplementaldocument
+<p>Use this endpoint to upload one or more supplemental documents to be used / included in the check.  This is only required for Accredited Investor check type or if any Supplemental Document Types were provided at the time the check was created or at the group level.</p>
+
+  * Values:
+    * `BankOrCreditCard` - Banking or credit card
+    * `TaxDocument` - Tax document
+    * `UtilityBill` - Utility bill
+    * `MedicalCard` - Medical card
+    * `AccreditedInvestor` - Accredited investor letter
+
+
+##### Example Request
+```
+{
+  "docType":"AccreditedInvestor",
+  "fileName":"accredited.jpg",
+  "fileContent":"data:image/jpeg;base64,/9j/4AAQSkZJR..."
+}
+```
+
+#### Request Parameters
+- [Path] <b>id (required)</b> - The unique identifier returned from the check create call
+- <b>docType (required)</b> - the type of supplemental document being provided 
+- <b>fileName (required)</b> - the filename of the image being uploaded
+- <b>fileContent (required)</b> - Base64 image (JPG or PNG) Data URL of the image containing page of the document to be uploaded.  Information about Data URL can be found <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs">here</a>
+
+---
+
+### GET /api/check/{id}/submit
+<p>After all the required data and images are uploaded for the required check types and supplemental document types, this endpoint is called to finalize and process the check.  If the check is able to be completed immediately, it will return the full results of the check, otherwise the status will be returned and the results can be retrieved after the check is completed asynchronously.  This will perform all validation required based on the specified check types defined as to what user information and documents need to be present - if any element is missing, an error will be returned reflecting the missing information.</p>
+
+#### Request Parameters
+- [Path] <b>id (required)</b> - The unique identifier returned from the check create call
+
+
+---
+
+## Retrieve Check Endpoints
+These endpoints allow for the retrieval of created checks to retrieve status and check criteria
+
+
 ### GET /api/check/{id}
 Gets the check information and status for a check using the Aver checkId returned when creating the check<
 
@@ -103,17 +323,24 @@ Gets the check information and status for a check using the Aver checkId returne
 ```
 
 ---
-### GET /api/check/getbythirdpartyidentifier/{id}(?all=true)
-Gets the check information and status for a check from the third party identifier provided when creating the check
+### POST /api/checklookup
+Search for checks by criteria
 
 #### Request Parameters
-- [Path] <b>id (required)</b> - The third party identifier provided during the check create call
-- [QueryString] <b>all (optional</b>) - By default, only the most recent check for the third party identifier will be returned.  To retrieve a list of all existing checks for the third party identifier, append ?all=true to the request url.
+- email 
+- lastName
+- firstName
+- thirdPartyIdentifier
 
 #### Response Parameters
-- See [Get Check by Id](/docs/check/#get-apicheckid "Get Check by Id")
+- Check[] See [Get Check by Id](/docs/check/#get-apicheckid "Get Check by Id")
 
 ---
+
+## Retrieve Results Endpoints
+These endpoints are used to retrieve the results for a completed check
+
+
 ### GET /api/check/{id}/results
 Gets the check information and status for a check including all results (if the status is Complete or Failed)
 
@@ -129,47 +356,55 @@ Gets the check information and status for a check including all results (if the 
 
 - <b>thirdPartyIdentifier</b> - The third party identifier for the check
 
-- <b>status</b> - The status of the check
+- <b>status</b> - The status of the check (statuses without a * can be ignored and are for informational purposes only)
 
-  * Values:
-    * `Completed` - The check was able to be completed successfully
-    * `Rejected` - The check could not be completed due to invalid or missing data
+  * `Created` - The check has been created but the user has not accessed enrollment or added any data
+  * `AwaitingUser` - The user has accessed the enrollment or has begun submitting data
+  * `AwaitingAutomation` - The enrollment has been submitted and queued for preprocessing
+  * `AwaitingReview` - The enrollment has been submitted and is queued for processing
+  * `InReview` - The enrollment is actively being reviewed or is in a secondary review
+  * `Rejected`* - The check could not be completed due to invalid or missing data
+  * `Completed`* - The check was able to be completed successfully and results can be retrieved
 
 
 - <b>statusReason</b> - If the check was rejected, detail as to the reason
 
-  * Values:
-		* `MissingDocuments` - Required documents were not provided
-		* `UnreadableDocumentsOrMissingVerificationInformation` - Identification documents were unreadable or did not contain the required information
-		* `ExpiredDocuments` - Identification documents expired
-		* `SuspiciousDocumentsOrImages` - Identification documents were suspected to be stolen or fraudulent
-		* `FacialVerificationFailed` - Liveness facial verification failed
-		* `UnderageApplicant` - Individual is under the age of 18
+  * `MissingDocuments` - Required documents were not provided
+  * `UnreadableDocumentsOrMissingVerificationInformation` - Identification documents were unreadable or did not contain the required information
+  * `ExpiredDocuments` - Identification documents expired
+  * `SuspiciousDocumentsOrImages` - Identification documents were suspected to be stolen or fraudulent
+  * `FacialVerificationFailed` - Liveness facial verification failed
 
 
 - <b>checkTypes</b> - The list of check types / verifications performed as part of the check (inherited from the group configuration)
 
-  * Values:
-    * `EmailVerification` - Email verification performed
-    * `DocumentVerification` - Identification document verification performed
-    * `PhotoVerification` - Liveness verification performed with facial recognition matching
-    * `AccreditedInvestor` - Accredited investor verification performed
-    * `Watchlist` - Text based watchlist search performed for individual
-    * `VisualWatchlist` - Facial match watchlist search performed for individual
-    * `RiskProfiling` - Risk profiling performed for individual
-    * `AddressVerification` - Address verification performed for individual
+  * `DocumentVerification` - Identification document verification performed
+  * `EmailVerification` - Email verification performed
+  * `RiskProfiling` - Risk profiling (access IP / location, email, facial match) performed for individual
+  * `AddressVerification` - Address verification performed for individual
+  * `PhotoVerification` - Liveness verification performed with facial recognition matching
+  * `PhoneVerification` - Phone number verification performed
+  * `Watchlist` - Text based watchlist search performed for individual
+  * `VisualWatchlist` - Facial match watchlist search performed for individual
+  * `AccreditedInvestor` - Accredited investor verification performed
+  * `CovidVaccinationVerification` - Covid vaccination verification performed
 
 
 - <b>warnings</b> - The warnings found based on the configured warnings in group settings
 
-  * Values:
-    * `Country` - Individual is from a restricted country
-    * `State` - Individual is from a restricted state or province
-    * `IPVpnTor` - Enrollment completed over VPN or TOR
-    * `Address` - Address invalid or suspected of fraud
-    * `EmailAddress` - Email address is invalid or suspect
-    * `WatchlistHitsFound` - Watchlist results found for individual
-    * `AdverseMediaFound` - Adverse media results found for individual
+  * `Age` - Individual is under the age of 18
+  * `Country` - Individual is from a restricted country
+  * `State` - Individual is from a restricted state or province
+  * `IPVpnTor` - Enrollment completed over VPN or TOR
+  * `Address` - Address invalid or suspected of fraud
+  * `EmailAddress` - Email address is invalid or suspect
+  * `WatchlistHitsFound` - Watchlist results found for individual
+  * `AdverseMediaFound` - Adverse media results found for individual
+  * `SameEmailFound` - the provided e-mail address was provided in a previous verification
+  * `SameIdDocumentFound` - the same identification document was provided in a previous verification
+  * `SameNameFound` - the same name was provided in a previous verification
+  * `PhoneInvalid` - the phone number provided is invalid
+  * `PhonePrepaidOrVoip` - the phone number provided is prepaid, disposable, or VOIP
 
 
 - <b>checkResults</b> - The result of the requested checks (see example below for complete data model)
@@ -274,30 +509,19 @@ Gets the check information and status for a check including all results (if the 
 ```
 
 ---
-### POST /api/check/{id}/accesslink
-Generates a new one-time use access link for end users to access their check enrollment.
+### GET /api/checkdoc/{id}/{docId}
+Retrieve the base64 image document for a check by id
 
 #### Request Parameters
-- [Path] <b>id (required)</b> - The unique identifier for the check returned from the check create call
-
-- <b>language (optional)</b> - The default language to use for the check enrollment for the user (they can change the language during enrollment).  Options are "en"(English), "zh-Hans"(Chinese), and "fr"(French).  Default is English if this is not provided. 
-
-- <b>returnUrl (optional)</b> - The url to redirect to for the user once they have completed the check enrollment workflow.  This is generally used for inline workflows.  The status / complete page will be shown at the end of enrollment if this is not set.
-
-##### Example Request
-```
-{
-  "language":"en",
-  "returnUrl":"https://www.yoursite.com/page"
-}
-```
+- [Path] <b>id (required)</b> - The check id to retrieve
+- [Path] <b>docid (required)</b> - The document id to retrieve
 
 #### Response Parameters
-- <b>url</b> - The url for the user to access their check enrollment
+- <b>base64</b> - base64 representation of the image
 
 ##### Example Response
 ```
 {
-"url": "http://app.goaver.com/CheckEnrollment/51771bd7-a5b5-4ab9-913c-f1dc15429f11?accessCode=904ec9f005224cbdbe431709c285fb22&language=en&returnUrl=https%3a%2f%2fwww.yoursite.com%2fpage"
+  "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gIoSUNDX1BST0ZJTEUAAQEAAAIYAAAAAAQwAABtbnRyUkdCIFhZWiAAAAAAAAAAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAAHRyWFlaAAABZAAAABRnWFlaAAABeAAAABRiWFlaAAABjAAAABRyVFJDAAABoAAAAChnVFJDAAABoAAAAChiVFJDAAABoAAAACh3dHB0AAAByAAAABRjcHJ0AAAB3AAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAFgAAAAcAHMAUgBHAEIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA...
 }
 ```
