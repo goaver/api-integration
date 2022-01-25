@@ -21,8 +21,8 @@ module.exports = {
           position: 'left',
         },
         {
-          href: 'https://github.com/goaver/api-integration/tree/master/examples',
-          label: 'Code Examples',
+          href: 'https://github.com/goaver/',
+          label: 'GitHub',
           position: 'left'
         }
       ]
