@@ -89,7 +89,7 @@ Re-generates a new one-time use access link for end users to access their hosted
 "url": "http://app.goaver.com/CheckEnrollment/51771bd7-a5b5-4ab9-913c-f1dc15429f11?accessCode=904ec9f005224cbdbe431709c285fb22&language=en&returnUrl=https%3a%2f%2fwww.yoursite.com%2fpage"
 }
 ```
-
+ 
 ---
 
 ## Create Check Advanced Endpoints
@@ -101,6 +101,7 @@ These advanced check creation endpoints are only available to subscriptions with
 <p>Provide all the user information required by the check type(s)</p>
 
 #### Request Parameters
+
 - [Path] <b>id (required)</b> - The unique identifier returned from the check create call
 - <b>ipAddress (optional - depends on check types)</b> - individual's IP address
 - <b>companyName (optional - depends on check types)</b> - individual's company name
